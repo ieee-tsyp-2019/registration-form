@@ -6,6 +6,7 @@ import {RouterModule} from '@angular/router';
 import {LoginComponent} from './login/login.component';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
+import {AngularFireAuthModule} from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {environment} from '../environments/environment';
     RouterModule.forRoot([
       {path: '', component: LoginComponent}
     ]),
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
