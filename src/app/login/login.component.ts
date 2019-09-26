@@ -19,4 +19,8 @@ export class LoginComponent implements OnInit {
     this.afAuth.auth.signInWithPopup(new auth.FacebookAuthProvider());
   }
 
+  logout() {
+    this.afAuth.auth.signOut();
+  }
+
 }
