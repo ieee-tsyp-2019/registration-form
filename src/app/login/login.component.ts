@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
+import {auth} from 'firebase';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,10 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  login() {
+    this.afAuth.auth.signInWithPopup(new auth.FacebookAuthProvider());
   }
 
 }
