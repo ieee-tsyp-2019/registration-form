@@ -10,6 +10,13 @@
           "tsyp2019-registration-form-dev"
         ]
       }
+    },
+    "tsyp2019-app-production": {
+      "hosting": {
+        "tsyp2019-registration-form-production": [
+          "tsyp2019-registration-form"
+        ]
+      }
     }
   }
 }
