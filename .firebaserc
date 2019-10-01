@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "tsyp2019-app-development"
+    "default": "tsyp2019-app-development",
+    "production": "tsyp2019-app-production"
   }
 }
