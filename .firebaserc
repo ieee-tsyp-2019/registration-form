@@ -2,5 +2,14 @@
   "projects": {
     "development": "tsyp2019-app-development",
     "production": "tsyp2019-app-production"
+  },
+  "targets": {
+    "tsyp2019-app-development": {
+      "hosting": {
+        "tsyp2019-registration-form-development": [
+          "tsyp2019-registration-form-dev"
+        ]
+      }
+    }
   }
 }
