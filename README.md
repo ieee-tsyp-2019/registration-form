@@ -1,6 +1,6 @@
 # TSYP 2019 Registration Form
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.6.
+Registration form for TSYP 2019.
 
 ## How to deploy to production
 When running `firebase deploy`, Firebase CLI will try to deploy all hosting
