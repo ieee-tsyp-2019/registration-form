@@ -16,7 +16,11 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.afAuth.auth.signInWithPopup(new auth.FacebookAuthProvider());
+    const provider = new auth.GoogleAuthProvider();
+    provider.setCustomParameters({
+      hd: 'ieee.org'
+    });
+    this.afAuth.auth.signInWithPopup(provider);
   }
 
   logout() {
