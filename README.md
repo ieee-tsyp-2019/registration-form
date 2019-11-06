@@ -11,6 +11,7 @@ valid only for project `tsyp2019-registration-form-production`. We need to
 deploy everything except hosting type first, then deploy the specific hosting
 target for production.
 ```bash
+ng build --prod # Build for production first
 firebase deploy -P production --except hosting
 firebase deploy -P production --only hosting:tsyp2019-registration-form-production
 ```
