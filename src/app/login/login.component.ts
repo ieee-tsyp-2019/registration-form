@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     provider.setCustomParameters({
       hd: 'ieee.org'
     });
-    this.afAuth.auth.signInWithPopup(provider);
+    this.afAuth.auth.signInWithRedirect(provider);
   }
 
   logout() {
