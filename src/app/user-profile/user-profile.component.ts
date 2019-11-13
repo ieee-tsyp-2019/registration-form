@@ -49,6 +49,12 @@ export class UserProfileComponent {
               '',
               '');
           }
+
+          if (this.userProfileInput.email) {
+            // TODO: Make filePath a class attribute
+            const filePath = 'users/' + this.userProfileInput.email + '/payment-receipt';
+            this.loadPaymentReceipt(filePath);
+          }
         });
       }
     });
