@@ -6,41 +6,109 @@
 					Send Us A Message
 				</span>
 
-      <label class="label-input100" for="first-name">Tell us your name *</label>
-      <div class="wrap-input100 rs1-wrap-input100 validate-input"
-           data-validate="Type first name">
-        <input class="input100" id="first-name" name="first-name"
-               [(ngModel)]="userProfileInput.cin" placeholder="First name"
-               type="text">
-        <span class="focus-input100"></span>
-      </div>
-      <div class="wrap-input100 rs2-wrap-input100 validate-input"
-           data-validate="Type last name">
-        <input class="input100" name="last-name" placeholder="Last name"
+      <label class="label-input100" for="email">IEEE email</label>
+      <div class="wrap-input100 validate-input">
+        <input [(ngModel)]="userProfileInput.email"
+               class="input100"
+               disabled
+               id="email"
+               name="email"
                type="text">
         <span class="focus-input100"></span>
       </div>
 
-      <label class="label-input100" for="email">Enter your email *</label>
-      <div class="wrap-input100 validate-input"
-           data-validate="Valid email is required: ex@abc.xyz">
-        <input class="input100" id="email" name="email"
-               placeholder="Eg. example@email.com" type="text">
+      <label class="label-input100" for="member-number">IEEE member
+        number</label>
+      <div class="wrap-input100 validate-input">
+        <input [(ngModel)]="userProfileInput.memberNumber"
+               class="input100"
+               id="member-number"
+               name="member-number"
+               type="text">
         <span class="focus-input100"></span>
       </div>
 
-      <label class="label-input100" for="phone">Enter phone number</label>
-      <div class="wrap-input100">
-        <input class="input100" id="phone" name="phone"
-               placeholder="Eg. +1 800 000000" type="text">
+      <label class="label-input100" for="full-name">Full name</label>
+      <div class="wrap-input100 validate-input">
+        <input [(ngModel)]="userProfileInput.fullName"
+               class="input100"
+               disabled
+               id="full-name"
+               name="full-name"
+               type="text">
         <span class="focus-input100"></span>
       </div>
 
-      <label class="label-input100" for="message">Message *</label>
-      <div class="wrap-input100 validate-input"
-           data-validate="Message is required">
-        <textarea class="input100" id="message" name="message"
-                  placeholder="Write us a message"></textarea>
+      <label class="label-input100" for="cin">CIN</label>
+      <div class="wrap-input100 validate-input">
+        <input [(ngModel)]="userProfileInput.cin"
+               class="input100"
+               id="cin"
+               name="cin"
+               type="text">
+        <span class="focus-input100"></span>
+      </div>
+
+      <label class="label-input100" for="release-date">Release date</label>
+      <div class="wrap-input100 validate-input">
+        <input [(ngModel)]="userProfileInput.releaseDate"
+               class="input100"
+               id="release-date"
+               name="release-date"
+               type="date">
+        <span class="focus-input100"></span>
+      </div>
+
+      <label class="label-input100" for="phone-number">Phone number</label>
+      <div class="wrap-input100 validate-input">
+        <input [(ngModel)]="userProfileInput.phoneNumber"
+               class="input100"
+               id="phone-number"
+               name="phone-number"
+               type="text">
+        <span class="focus-input100"></span>
+      </div>
+
+      <label class="label-input100" for="birth-date">Birth date</label>
+      <div class="wrap-input100 validate-input">
+        <input [(ngModel)]="userProfileInput.dateOfBirth"
+               class="input100"
+               id="birth-date"
+               name="birth-date"
+               type="text">
+        <span class="focus-input100"></span>
+      </div>
+
+      <label class="label-input100" for="student-branch">Student branch</label>
+      <div class="wrap-input100 validate-input">
+        <input [(ngModel)]="userProfileInput.studentBranch"
+               class="input100"
+               id="student-branch"
+               name="student-branch"
+               type="text">
+        <span class="focus-input100"></span>
+      </div>
+
+      <label class="label-input100" for="payment-receipt">Payment
+        receipt</label>
+      <div class="wrap-input100 validate-input">
+        <input [(ngModel)]="userProfileInput.paymentReceipt"
+               class="input100"
+               id="payment-receipt"
+               name="payment-receipt"
+               type="file">
+        <span class="focus-input100"></span>
+      </div>
+
+      <label class="label-input100" for="accommodation">Accommodation</label>
+      <div class="wrap-input100 validate-input">
+        <select [(ngModel)]="userProfileInput.accommodation"
+                class="input100"
+                id="accommodation"
+                name="accommodation">
+          <option>Diar Lemdina</option>
+          <option>Eden</option>
+        </select>
         <span class="focus-input100"></span>
       </div>
 
