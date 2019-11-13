@@ -16,7 +16,17 @@ export class UserProfileComponent {
   private userProfileSubscription;
 
   constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore) {
-    this.userProfileInput = new UserProfile('');
+    this.userProfileInput = new UserProfile(
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '');
     this.afAuth.auth.onAuthStateChanged(user => {
       if (user) {
         this.userProfileDoc = afs.doc<UserProfile>('users/' + user.uid);
@@ -24,7 +34,17 @@ export class UserProfileComponent {
         this.userProfileSubscription = this.userProfile.subscribe(userProfile => {
           this.userProfileInput = userProfile;
           if (!this.userProfileInput) {
-            this.userProfileInput = new UserProfile('');
+            this.userProfileInput = new UserProfile(
+              '',
+              '',
+              '',
+              '',
+              '',
+              '',
+              '',
+              '',
+              '',
+              '');
           }
         });
       }
