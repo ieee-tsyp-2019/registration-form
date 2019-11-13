@@ -15,6 +15,7 @@ export class UserProfileComponent {
   private userProfileDoc: AngularFirestoreDocument<UserProfile>;
   private userProfile: Observable<UserProfile | undefined>;
   private userProfileSubscription;
+  private uploadProgress;
 
   constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private storage: AngularFireStorage) {
     this.userProfileInput = new UserProfile(
@@ -54,6 +55,13 @@ export class UserProfileComponent {
 
   update() {
     this.userProfileDoc.set(Object.assign({}, this.userProfileInput));
+  }
+
+  uploadFile(event) {
+    const file = event.target.files[0];
+    const filePath = 'users/' + this.userProfileInput.email + '/payment-receipt';
+    const task = this.storage.upload(filePath, file);
+    this.uploadProgress = task.percentageChanges();
   }
 
 }
