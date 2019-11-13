@@ -65,4 +65,9 @@ export class UserProfileComponent {
     this.uploadProgress = task.percentageChanges();
   }
 
+  loadPaymentReceipt(filePath) {
+    const ref = this.storage.ref(filePath);
+    this.paymentReceiptUrl = ref.getDownloadURL();
+  }
+
 }
