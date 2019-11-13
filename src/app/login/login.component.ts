@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   }
 
   logout() {
+    // TODO: Unsubscribe from all subscriptions
     this.afAuth.auth.signOut();
   }
 
