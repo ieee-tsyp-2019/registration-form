@@ -21,7 +21,8 @@ import {AngularFireAuthGuard} from '@angular/fire/auth-guard';
   imports: [
     BrowserModule,
     RouterModule.forRoot([
-      {path: '', component: LoginComponent}
+      {path: '', component: AppComponent},
+      {path: '**', redirectTo: ''}
     ]),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
