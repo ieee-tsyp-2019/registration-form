@@ -1,7 +1,16 @@
 export class UserProfile {
 
   constructor(
-    public cin: string
+    public email: string,
+    public memberNumber: string,
+    public fullName: string,
+    public cin: string,
+    public releaseDate: string,
+    public phoneNumber: string,
+    public dateOfBirth: string,
+    public studentBranch: string,
+    public paymentReceipt: any,
+    public accommodation: string
   ) {
   }
 
