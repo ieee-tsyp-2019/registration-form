@@ -7,11 +7,16 @@ import {LoginComponent} from './login/login.component';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFireAuthModule} from '@angular/fire/auth';
+import {FormsModule} from '@angular/forms';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {UserProfileComponent} from './user-profile/user-profile.component';
+import {AngularFireAuthGuard} from '@angular/fire/auth-guard';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -19,9 +24,11 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
       {path: '', component: LoginComponent}
     ]),
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    FormsModule,
+    AngularFirestoreModule
   ],
-  providers: [],
+  providers: [AngularFireAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
