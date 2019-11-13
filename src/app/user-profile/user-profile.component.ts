@@ -35,12 +35,12 @@ export class UserProfileComponent {
           this.userProfileInput = userProfile;
           if (!this.userProfileInput) {
             this.userProfileInput = new UserProfile(
+              user.email ? user.email : '',
+              '',
+              user.displayName ? user.displayName : '',
               '',
               '',
-              '',
-              '',
-              '',
-              '',
+              user.phoneNumber ? user.phoneNumber : '',
               '',
               '',
               '',
