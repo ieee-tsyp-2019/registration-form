@@ -1,6 +1,7 @@
 export class UserProfile {
 
   constructor(
+    public type: string,
     public email: string,
     public memberNumber: string,
     public fullName: string,
