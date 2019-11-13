@@ -63,6 +63,8 @@ export class UserProfileComponent {
     const filePath = 'users/' + this.userProfileInput.email + '/payment-receipt';
     const task = this.storage.upload(filePath, file);
     this.uploadProgress = task.percentageChanges();
+
+    this.loadPaymentReceipt(filePath);
   }
 
   loadPaymentReceipt(filePath) {
