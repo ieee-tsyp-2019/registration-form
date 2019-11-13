@@ -96,12 +96,42 @@
              class="label-input100"
              for="student-branch">Student branch</label>
       <div class="wrap-input100 validate-input">
-        <input [(ngModel)]="userProfileInput.studentBranch"
-               *ngIf="userProfileInput.type == 'Student'"
-               class="input100"
-               id="student-branch"
-               name="student-branch"
-               type="text">
+        <select *ngIf="userProfileInput.type == 'Student'"
+                [(ngModel)]="userProfileInput.studentBranch"
+                class="input100"
+                id="student-branch"
+                name="student-branch">
+          <option>ENIT</option>
+          <option>ENIS</option>
+          <option>ENSI</option>
+          <option>SUP'COM</option>
+          <option>ENISO</option>
+          <option>ENICAR</option>
+          <option>INSAT</option>
+          <option>ENIG</option>
+          <option>FST</option>
+          <option>ENIB</option>
+          <option>ENSIT</option>
+          <option>ENIM</option>
+          <option>ENETCOM</option>
+          <option>ULT</option>
+          <option>ISSAT</option>
+          <option>ENSTAB</option>
+          <option>ISET Djerba</option>
+          <option>ISET’Com</option>
+          <option>Polytechnic Sousse</option>
+          <option>Polytechnic Monastir</option>
+          <option>ISI</option>
+          <option>ISET Rades</option>
+          <option>INAT</option>
+          <option>TEK-UP</option>
+          <option>FSS</option>
+          <option>ESPRIT</option>
+          <option>SESAME</option>
+          <option>ISI Mahdia</option>
+          <option>IIT</option>
+          <option>Polytechnic Sfax</option>
+        </select>
         <span class="focus-input100"></span>
       </div>
 
