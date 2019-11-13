@@ -26,6 +26,7 @@ export class UserProfileComponent {
       '',
       '',
       '',
+      '',
       '');
     this.afAuth.auth.onAuthStateChanged(user => {
       if (user) {
@@ -35,6 +36,7 @@ export class UserProfileComponent {
           this.userProfileInput = userProfile;
           if (!this.userProfileInput) {
             this.userProfileInput = new UserProfile(
+              '',
               user.email ? user.email : '',
               '',
               user.displayName ? user.displayName : '',
