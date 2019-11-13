@@ -16,6 +16,7 @@ export class UserProfileComponent {
   private userProfile: Observable<UserProfile | undefined>;
   private userProfileSubscription;
   private uploadProgress;
+  private paymentReceiptUrl;
 
   constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private storage: AngularFireStorage) {
     this.userProfileInput = new UserProfile(
