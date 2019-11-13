@@ -146,6 +146,9 @@
                type="file">
         <span class="focus-input100"></span>
       </div>
+      <progress [value]="(uploadProgress | async)"
+                class="progress-bar wrap-input100"
+                max="100"></progress>
 
       <label class="label-input100" for="accommodation">Accommodation</label>
       <div class="wrap-input100 validate-input">
