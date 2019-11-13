@@ -138,7 +138,8 @@
       <label class="label-input100" for="payment-receipt">Payment
         receipt</label>
       <div class="wrap-input100 validate-input">
-        <input [(ngModel)]="userProfileInput.paymentReceipt"
+        <input (change)="uploadFile($event)"
+               accept=".png,.jpg"
                class="input100"
                id="payment-receipt"
                name="payment-receipt"
