@@ -10,7 +10,6 @@ export class UserProfile {
     public phoneNumber: string,
     public dateOfBirth: string,
     public studentBranch: string,
-    public paymentReceipt: any,
     public accommodation: string
   ) {
   }
