@@ -3,6 +3,7 @@ import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestor
 import {Observable} from 'rxjs';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {UserProfile} from '../user-profile';
+import {AngularFireStorage} from '@angular/fire/storage';
 
 @Component({
   selector: 'app-user-profile',
@@ -15,7 +16,7 @@ export class UserProfileComponent {
   private userProfile: Observable<UserProfile | undefined>;
   private userProfileSubscription;
 
-  constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore) {
+  constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private storage: AngularFireStorage) {
     this.userProfileInput = new UserProfile(
       '',
       '',
