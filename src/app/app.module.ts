@@ -16,7 +16,8 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
   imports: [
     BrowserModule,
     RouterModule.forRoot([
-      {path: '', component: LoginComponent}
+      {path: '', component: AppComponent},
+      {path: '**', redirectTo: ''}
     ]),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule
