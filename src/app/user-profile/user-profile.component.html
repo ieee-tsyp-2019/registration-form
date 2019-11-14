@@ -159,8 +159,8 @@
                 class="input100"
                 id="accommodation"
                 name="accommodation">
-          <option>Diar Lemdina</option>
-          <option>Eden</option>
+          <option *ngIf="(diarLemdina | async)?.count < 1">Diar Lemdina</option>
+          <option *ngIf="(eden | async)?.count < 1">Eden</option>
         </select>
         <span class="focus-input100"></span>
       </div>
