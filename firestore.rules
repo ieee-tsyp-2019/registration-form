@@ -7,5 +7,10 @@ service cloud.firestore {
       allow create: if request.auth.uid != null &&
         request.auth.token.email.matches('.*@ieee[.]org$');
     }
+
+    match /accommodations/{accommodation} {
+      allow read: if request.auth.uid != null &&
+        request.auth.token.email.matches('.*@ieee[.]org$');
+    }
   }
 }
