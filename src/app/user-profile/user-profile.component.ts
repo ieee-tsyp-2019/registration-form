@@ -22,6 +22,10 @@ export class UserProfileComponent {
   private userProfileSubscription;
   private uploadProgress;
   private paymentReceiptUrl;
+  private diarLemdinaDoc;
+  private diarLemdina;
+  private edenDoc;
+  private eden;
 
   constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private storage: AngularFireStorage,
               private fns: AngularFireFunctions) {
