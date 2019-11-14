@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {UserProfile} from '../user-profile';
 import {AngularFireStorage} from '@angular/fire/storage';
+import {AngularFireFunctions} from '@angular/fire/functions';
 
 @Component({
   selector: 'app-user-profile',
@@ -18,7 +19,8 @@ export class UserProfileComponent {
   private uploadProgress;
   private paymentReceiptUrl;
 
-  constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private storage: AngularFireStorage) {
+  constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private storage: AngularFireStorage,
+              private fns: AngularFireFunctions) {
     this.userProfileInput = new UserProfile(
       '',
       '',
