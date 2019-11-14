@@ -78,6 +78,13 @@ export class UserProfileComponent {
 
   update() {
     this.userProfileDoc.set(Object.assign({}, this.userProfileInput));
+
+    const callable = this.fns.httpsCallable('setAccommodation');
+    callable({accommodation: this.userProfileInput.accommodation}).toPromise().then((result: any) => {
+      console.log(result);
+    }).catch((error: any) => {
+      console.log(error);
+    });
   }
 
   uploadFile(event) {
