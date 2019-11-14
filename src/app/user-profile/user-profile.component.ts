@@ -66,6 +66,12 @@ export class UserProfileComponent {
             this.loadPaymentReceipt(filePath);
           }
         });
+
+        this.diarLemdinaDoc = afs.doc<Accommodation>('accommodations/Diar Lemdina');
+        this.diarLemdina = this.diarLemdinaDoc.valueChanges();
+
+        this.edenDoc = afs.doc<Accommodation>('accommodations/Eden');
+        this.eden = this.edenDoc.valueChanges();
       }
     });
   }
