@@ -240,9 +240,20 @@
           </div>
 
           <div class="form-field">
-            <label for="accommodation">Accommodation *</label>
+            <label *ngIf="accommodation.valid || accommodation.untouched"
+                   for="accommodation">
+              Accommodation *
+            </label>
+            <label *ngIf="accommodation.invalid && accommodation.touched"
+                   class="label-warning"
+                   for="accommodation">
+              Accommodation is required!
+            </label>
             <select [(ngModel)]="userProfileInput.accommodation"
-                    class="full-width"
+                    #accommodation="ngModel"
+                    class="full-width form-control"
+                    ngModel
+                    required
                     id="accommodation"
                     name="accommodation">
               <option *ngIf="(diarLemdina | async)?.count < diarLemdinaLimit">
