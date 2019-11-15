@@ -22,7 +22,6 @@ export class UserProfileComponent {
   private userProfile: Observable<UserProfile | undefined>;
   private userProfileSubscription;
   private uploadProgress;
-  private paymentReceiptUrl;
   private diarLemdinaDoc;
   private diarLemdina;
   private edenDoc;
