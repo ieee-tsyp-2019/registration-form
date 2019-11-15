@@ -28,6 +28,7 @@ export class UserProfileComponent {
   private eden;
   private isAlreadyRegistred = false;
   private isSuccess = false;
+  private paymentReceiptFile = undefined;
 
   constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private storage: AngularFireStorage,
               private fns: AngularFireFunctions, public datepipe: DatePipe) {
@@ -96,10 +97,7 @@ export class UserProfileComponent {
   }
 
   uploadFile(event) {
-    const file = event.target.files[0];
-    const filePath = 'users/' + this.userProfileInput.email + '/payment-receipt';
-    const task = this.storage.upload(filePath, file);
-    this.uploadProgress = task.percentageChanges();
+    this.paymentReceiptFile = event.target.files[0];
   }
 
 }
