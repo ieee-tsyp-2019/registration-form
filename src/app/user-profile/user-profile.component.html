@@ -188,7 +188,7 @@
       </form>
 
       <!-- contact-warning -->
-      <div *ngIf="isAlreadyRegistred" class="message-warning">
+      <div *ngIf="isAlreadyRegistred && !isSuccess" class="message-warning">
         {{ userProfileInput.email }} is already registered. Please contact us
         if there is any problem.
       </div>
