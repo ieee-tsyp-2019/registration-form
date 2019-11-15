@@ -78,11 +78,9 @@
             </select>
           </div>
 
-          <div class="form-field">
-            <label *ngIf="userProfileInput.type == 'Student'"
-                   for="student-branch">Student branch *</label>
-            <select *ngIf="userProfileInput.type == 'Student'"
-                    [(ngModel)]="userProfileInput.studentBranch"
+          <div *ngIf="userProfileInput.type == 'Student'" class="form-field">
+            <label for="student-branch">Student branch *</label>
+            <select [(ngModel)]="userProfileInput.studentBranch"
                     class="full-width"
                     id="student-branch"
                     name="student-branch">
