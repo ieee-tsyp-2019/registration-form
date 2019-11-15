@@ -3,3 +3,13 @@
 option {
   color: #121212;
 }
+
+.unstyled-date {
+  -webkit-appearance: none;
+}
+
+.unstyled-date::-webkit-inner-spin-button,
+.unstyled-date::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
