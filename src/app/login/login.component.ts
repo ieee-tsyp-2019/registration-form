@@ -10,6 +10,11 @@ import {auth} from 'firebase';
 export class LoginComponent implements OnInit {
 
   constructor(public afAuth: AngularFireAuth) {
+    this.afAuth.auth.onAuthStateChanged(user => {
+      if (!user) {
+        this.login();
+      }
+    });
   }
 
   ngOnInit() {
@@ -20,7 +25,7 @@ export class LoginComponent implements OnInit {
     provider.setCustomParameters({
       hd: 'ieee.org'
     });
-    this.afAuth.auth.signInWithPopup(provider);
+    this.afAuth.auth.signInWithRedirect(provider);
   }
 
   logout() {

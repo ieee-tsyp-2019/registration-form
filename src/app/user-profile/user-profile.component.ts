@@ -5,6 +5,7 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {UserProfile} from '../user-profile';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {AngularFireFunctions} from '@angular/fire/functions';
+import {DatePipe} from '@angular/common';
 
 export interface Accommodation {
   count: number;
@@ -28,16 +29,17 @@ export class UserProfileComponent {
   private eden;
 
   constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private storage: AngularFireStorage,
-              private fns: AngularFireFunctions) {
+              private fns: AngularFireFunctions, public datepipe: DatePipe) {
+    const todayDateString: string = this.datepipe.transform(new Date(), 'yyyy-MM-dd');
     this.userProfileInput = new UserProfile(
       '',
       '',
       '',
       '',
       '',
+      todayDateString,
       '',
-      '',
-      '',
+      todayDateString,
       '',
       '');
     this.afAuth.auth.onAuthStateChanged(user => {
@@ -53,9 +55,9 @@ export class UserProfileComponent {
               '',
               user.displayName ? user.displayName : '',
               '',
-              '',
+              todayDateString,
               user.phoneNumber ? user.phoneNumber : '',
-              '',
+              todayDateString,
               '',
               '');
           }

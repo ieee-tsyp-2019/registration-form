@@ -1,266 +1,252 @@
-<div class="container-contact100">
-  <div class="wrap-contact100">
-    <form class="contact100-form validate-form">
-      <app-login></app-login>
-				<span class="contact100-form-title">
-					Registration Form
-				</span>
+<!-- contact
+================================================== -->
+<section class="s-contact" id="contact">
 
-      <label class="label-input100" for="type">Are you a student or a young
-        professional?</label>
-      <div class="wrap-input100 validate-input">
-        <select [(ngModel)]="userProfileInput.type"
-                class="input100"
-                id="type"
-                name="type">
-          <option>Student</option>
-          <option>Young professional</option>
-        </select>
-        <span class="focus-input100"></span>
-      </div>
+  <div class="overlay"></div>
+  <div class="contact__line"></div>
 
-      <label class="label-input100" for="email">IEEE email</label>
-      <div class="wrap-input100 validate-input">
-        <input [(ngModel)]="userProfileInput.email"
-               class="input100"
-               disabled
-               id="email"
-               name="email"
-               type="text">
-        <span class="focus-input100"></span>
-      </div>
-
-      <label class="label-input100" for="member-number">IEEE member
-        number</label>
-      <div class="wrap-input100 validate-input">
-        <input [(ngModel)]="userProfileInput.memberNumber"
-               class="input100"
-               id="member-number"
-               name="member-number"
-               type="text">
-        <span class="focus-input100"></span>
-      </div>
-
-      <label class="label-input100" for="full-name">Full name</label>
-      <div class="wrap-input100 validate-input">
-        <input [(ngModel)]="userProfileInput.fullName"
-               class="input100"
-               disabled
-               id="full-name"
-               name="full-name"
-               type="text">
-        <span class="focus-input100"></span>
-      </div>
-
-      <label class="label-input100" for="cin">CIN</label>
-      <div class="wrap-input100 validate-input">
-        <input [(ngModel)]="userProfileInput.cin"
-               class="input100"
-               id="cin"
-               name="cin"
-               type="text">
-        <span class="focus-input100"></span>
-      </div>
-
-      <label class="label-input100" for="release-date">Release date</label>
-      <div class="wrap-input100 validate-input">
-        <input [(ngModel)]="userProfileInput.releaseDate"
-               class="input100"
-               id="release-date"
-               name="release-date"
-               type="date">
-        <span class="focus-input100"></span>
-      </div>
-
-      <label class="label-input100" for="phone-number">Phone number</label>
-      <div class="wrap-input100 validate-input">
-        <input [(ngModel)]="userProfileInput.phoneNumber"
-               class="input100"
-               id="phone-number"
-               name="phone-number"
-               type="text">
-        <span class="focus-input100"></span>
-      </div>
-
-      <label class="label-input100" for="birth-date">Birth date</label>
-      <div class="wrap-input100 validate-input">
-        <input [(ngModel)]="userProfileInput.dateOfBirth"
-               class="input100"
-               id="birth-date"
-               name="birth-date"
-               type="date">
-        <span class="focus-input100"></span>
-      </div>
-
-      <label *ngIf="userProfileInput.type == 'Student'"
-             class="label-input100"
-             for="student-branch">Student branch</label>
-      <div class="wrap-input100 validate-input">
-        <select *ngIf="userProfileInput.type == 'Student'"
-                [(ngModel)]="userProfileInput.studentBranch"
-                class="input100"
-                id="student-branch"
-                name="student-branch">
-          <option>ENIT</option>
-          <option>ENIS</option>
-          <option>ENSI</option>
-          <option>SUP'COM</option>
-          <option>ENISO</option>
-          <option>ENICAR</option>
-          <option>INSAT</option>
-          <option>ENIG</option>
-          <option>FST</option>
-          <option>ENIB</option>
-          <option>ENSIT</option>
-          <option>ENIM</option>
-          <option>ENETCOM</option>
-          <option>ULT</option>
-          <option>ISSAT</option>
-          <option>ENSTAB</option>
-          <option>ISET Djerba</option>
-          <option>ISET’Com</option>
-          <option>Polytechnic Sousse</option>
-          <option>Polytechnic Monastir</option>
-          <option>ISI</option>
-          <option>ISET Rades</option>
-          <option>INAT</option>
-          <option>TEK-UP</option>
-          <option>FSS</option>
-          <option>ESPRIT</option>
-          <option>SESAME</option>
-          <option>ISI Mahdia</option>
-          <option>IIT</option>
-          <option>Polytechnic Sfax</option>
-        </select>
-        <span class="focus-input100"></span>
-      </div>
-
-      <label class="label-input100" for="payment-receipt">Payment
-        receipt</label>
-      <div class="wrap-input100 validate-input">
-        <input (change)="uploadFile($event)"
-               accept=".png,.jpg"
-               class="input100"
-               id="payment-receipt"
-               name="payment-receipt"
-               type="file">
-        <span class="focus-input100"></span>
-      </div>
-      <progress [value]="(uploadProgress | async)"
-                class="progress-bar wrap-input100"
-                max="100"></progress>
-      <div *ngIf="paymentReceiptUrl | async; let showPaymentReceipt">
-        <img [src]="showPaymentReceipt" class="wrap-input100"/>
-      </div>
-
-      <label class="label-input100" for="accommodation">Accommodation</label>
-      <div class="wrap-input100 validate-input">
-        <select [(ngModel)]="userProfileInput.accommodation"
-                class="input100"
-                id="accommodation"
-                name="accommodation">
-          <option *ngIf="(diarLemdina | async)?.count < 1">Diar Lemdina</option>
-          <option *ngIf="(eden | async)?.count < 1">Eden</option>
-        </select>
-        <span class="focus-input100"></span>
-      </div>
-
-      <div class="container-contact100-form-btn">
-        <button (click)="update()" class="contact100-form-btn">
-          Update my profile
-        </button>
-      </div>
-    </form>
-
-    <div class="contact100-more flex-col-c-m"
-         style="background-image: url('assets/images/bg-01.jpg');">
-      <div class="flex-w size1 p-b-47">
-        <div class="txt1 p-r-25">
-          <span class="lnr lnr-map-marker"></span>
-        </div>
-
-        <div class="flex-col size2">
-						<span class="txt1 p-b-20">
-							Address
-						</span>
-
-          <span class="txt2">
-							Medina, Yasmine Hammamet
-						</span>
-        </div>
-      </div>
-
-      <div class="dis-flex size1 p-b-47">
-        <div class="txt1 p-r-25">
-          <span class="lnr lnr-phone-handset"></span>
-        </div>
-
-        <div class="flex-col size2">
-						<span class="txt1 p-b-20">
-							Lets Talk
-						</span>
-
-          <span class="txt3">
-							+1 800 1236879
-						</span>
-        </div>
-      </div>
-
-      <div class="dis-flex size1 p-b-47">
-        <div class="txt1 p-r-25">
-          <span class="lnr lnr-envelope"></span>
-        </div>
-
-        <div class="flex-col size2">
-						<span class="txt1 p-b-20">
-							Contact
-						</span>
-
-          <span class="txt3">
-							tsyp@ieee.org
-						</span>
-        </div>
-      </div>
+  <div class="row section-header">
+    <div class="col-full">
+      <h3 class="subhead">
+        <mark>7th</mark>
+        IEEE Tunisian Students and Young Professionals Congress (TSYP)
+      </h3>
+      <h1 class="display-2 display-2--light">Registration form</h1>
     </div>
   </div>
-</div>
 
+  <div class="row contact-content">
 
-<div id="dropDownSelect1"></div>
+    <div class="contact-primary">
+      <app-login></app-login>
 
-<!--===============================================================================================-->
-<script src="assets/vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-<script src="assets/vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-<script src="assets/vendor/bootstrap/js/popper.js"></script>
-<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-<script src="assets/vendor/select2/select2.min.js"></script>
-<script>
-    $(".selection-2").select2({
-        minimumResultsForSearch: 20,
-        dropdownParent: $('#dropDownSelect1')
-    });
-</script>
-<!--===============================================================================================-->
-<script src="assets/vendor/daterangepicker/moment.min.js"></script>
-<script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-<script src="assets/vendor/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
-<script src="assets/js/main.js"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async
-        src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
+      <h3 class="h6">
+        Please confirm all the provided information are correct and accurate
+        before submitting the registration form.
+      </h3>
 
-    function gtag() {
-        dataLayer.push(arguments);
-    }
+      <form action="" id="contactForm" method="post" name="contactForm"
+            novalidate="novalidate">
+        <fieldset>
 
-    gtag('js', new Date());
+          <div class="form-field">
+            <label for="type">Student or YP? *</label>
+            <select [(ngModel)]="userProfileInput.type"
+                    class="full-width"
+                    id="type"
+                    name="type"
+                    required="">
+              <option>Student</option>
+              <option>Young professional</option>
+            </select>
+          </div>
 
-    gtag('config', 'UA-23581568-13');
-</script>
+          <div class="form-field">
+            <label for="type">IEEE email *</label>
+            <input [(ngModel)]="userProfileInput.email"
+                   class="full-width"
+                   disabled
+                   id="email"
+                   name="email"
+                   type="text">
+          </div>
+
+          <div class="form-field">
+            <label for="type">IEEE member number *</label>
+            <input [(ngModel)]="userProfileInput.memberNumber"
+                   class="full-width"
+                   id="member-number"
+                   name="member-number"
+                   type="text">
+          </div>
+
+          <div class="form-field">
+            <label for="type">Full name *</label>
+            <input [(ngModel)]="userProfileInput.fullName"
+                   class="full-width"
+                   disabled
+                   id="full-name"
+                   name="full-name"
+                   type="text">
+          </div>
+
+          <div class="form-field">
+            <label for="type">National identity card number *</label>
+            <input [(ngModel)]="userProfileInput.cin"
+                   class="full-width"
+                   id="cin"
+                   name="cin"
+                   type="text">
+          </div>
+
+          <div class="form-field">
+            <label for="type">Release date *</label>
+            <input [(ngModel)]="userProfileInput.releaseDate"
+                   class="full-width unstyled-date"
+                   id="release-date"
+                   name="release-date"
+                   type="date">
+          </div>
+
+          <div class="form-field">
+            <label for="type">Phone number *</label>
+            <input [(ngModel)]="userProfileInput.phoneNumber"
+                   class="input100"
+                   id="phone-number"
+                   name="phone-number"
+                   type="text">
+          </div>
+
+          <div class="form-field">
+            <label for="birth-date">Birth date *</label>
+            <input [(ngModel)]="userProfileInput.dateOfBirth"
+                   class="full-width unstyled-date"
+                   id="birth-date"
+                   name="birth-date"
+                   type="date">
+          </div>
+
+          <div class="form-field">
+            <label *ngIf="userProfileInput.type == 'Student'"
+                   for="student-branch">Student branch *</label>
+            <select *ngIf="userProfileInput.type == 'Student'"
+                    [(ngModel)]="userProfileInput.studentBranch"
+                    class="full-width"
+                    id="student-branch"
+                    name="student-branch">
+              <option>ENIT</option>
+              <option>ENIS</option>
+              <option>ENSI</option>
+              <option>SUP'COM</option>
+              <option>ENISO</option>
+              <option>ENICAR</option>
+              <option>INSAT</option>
+              <option>ENIG</option>
+              <option>FST</option>
+              <option>ENIB</option>
+              <option>ENSIT</option>
+              <option>ENIM</option>
+              <option>ENETCOM</option>
+              <option>ULT</option>
+              <option>ISSAT</option>
+              <option>ENSTAB</option>
+              <option>ISET Djerba</option>
+              <option>ISET’Com</option>
+              <option>Polytechnic Sousse</option>
+              <option>Polytechnic Monastir</option>
+              <option>ISI</option>
+              <option>ISET Rades</option>
+              <option>INAT</option>
+              <option>TEK-UP</option>
+              <option>FSS</option>
+              <option>ESPRIT</option>
+              <option>SESAME</option>
+              <option>ISI Mahdia</option>
+              <option>IIT</option>
+              <option>Polytechnic Sfax</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="payment-receipt">Payment receipt *</label>
+            <input (change)="uploadFile($event)"
+                   accept=".png,.jpg"
+                   class="full-width"
+                   id="payment-receipt"
+                   name="payment-receipt"
+                   type="file">
+          </div>
+
+          <div class="form-field">
+            <label for="accommodation">Accommodation *</label>
+            <select [(ngModel)]="userProfileInput.accommodation"
+                    class="full-width"
+                    id="accommodation"
+                    name="accommodation">
+              <option *ngIf="(diarLemdina | async)?.count < 1">Diar Lemdina
+              </option>
+              <option *ngIf="(eden | async)?.count < 1">Eden</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <button (click)="update()"
+                    class="full-width btn--primary">Submit
+            </button>
+            <div class="submit-loader">
+              <div class="text-loader">Sending...</div>
+              <div class="s-loader">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+              </div>
+            </div>
+          </div>
+
+        </fieldset>
+      </form>
+
+      <!-- contact-warning -->
+      <div class="message-warning">
+        Something went wrong. Please try again.
+      </div>
+
+      <!-- contact-success -->
+      <div class="message-success">
+        Your message was sent, thank you!<br>
+      </div>
+
+    </div> <!-- end contact-primary -->
+
+    <div class="contact-secondary">
+      <div class="contact-info">
+
+        <h3 class="h6 hide-on-fullwidth">Contact Info</h3>
+
+        <div class="cinfo">
+          <h5>Address</h5>
+          <p>
+            Medina, Yasmine Hammamet
+          </p>
+        </div>
+
+        <div class="cinfo">
+          <h5>Email Us At</h5>
+          <p>
+            tsyp@ieee.org
+          </p>
+        </div>
+
+        <div class="cinfo">
+          <h5>Call Us At</h5>
+          <p>
+            (+216) 54 557 486<br>
+            (+216) 29 024 205<br>
+            (+216) 23 209 400
+          </p>
+        </div>
+
+        <ul class="contact-social">
+          <li>
+            <a href="https://tsyp.ieee.tn" target="_blank">
+              <i aria-hidden="true" class="fa fa-globe"></i>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/ieee.tsyp" target="_blank">
+              <i aria-hidden="true" class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/ieee_tsyp2k19" target="_blank">
+              <i aria-hidden="true" class="fa fa-instagram"></i>
+            </a>
+          </li>
+        </ul> <!-- end contact-social -->
+
+      </div> <!-- end contact-info -->
+    </div> <!-- end contact-secondary -->
+
+  </div> <!-- end contact-content -->
+
+</section> <!-- end s-contact -->
