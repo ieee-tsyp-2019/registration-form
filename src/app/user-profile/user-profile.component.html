@@ -30,27 +30,149 @@
         <fieldset>
 
           <div class="form-field">
-            <input aria-required="true" class="full-width" id="contactName"
-                   minlength="2" name="contactName" placeholder="Your Name"
-                   required="" type="text" value="">
+            <label for="type">Student or YP? *</label>
+            <select [(ngModel)]="userProfileInput.type"
+                    class="full-width"
+                    id="type"
+                    name="type"
+                    required="">
+              <option>Student</option>
+              <option>Young professional</option>
+            </select>
           </div>
+
           <div class="form-field">
-            <input aria-required="true" class="full-width" id="contactEmail"
-                   name="contactEmail" placeholder="Your Email" required=""
-                   type="email" value="">
+            <label for="type">IEEE email *</label>
+            <input [(ngModel)]="userProfileInput.email"
+                   class="full-width"
+                   disabled
+                   id="email"
+                   name="email"
+                   type="text">
           </div>
+
           <div class="form-field">
-            <input class="full-width" id="contactSubject" name="contactSubject"
-                   placeholder="Subject" type="text" value="">
+            <label for="type">IEEE member number *</label>
+            <input [(ngModel)]="userProfileInput.memberNumber"
+                   class="full-width"
+                   id="member-number"
+                   name="member-number"
+                   type="text">
           </div>
+
           <div class="form-field">
-            <textarea aria-required="true" class="full-width" cols="50"
-                      id="contactMessage" name="contactMessage"
-                      placeholder="Your Message" required=""
-                      rows="10"></textarea>
+            <label for="type">Full name *</label>
+            <input [(ngModel)]="userProfileInput.fullName"
+                   class="full-width"
+                   disabled
+                   id="full-name"
+                   name="full-name"
+                   type="text">
           </div>
+
           <div class="form-field">
-            <button class="full-width btn--primary">Submit</button>
+            <label for="type">National identity card number *</label>
+            <input [(ngModel)]="userProfileInput.cin"
+                   class="full-width"
+                   id="cin"
+                   name="cin"
+                   type="text">
+          </div>
+
+          <div class="form-field">
+            <label for="type">Release date *</label>
+            <input [(ngModel)]="userProfileInput.releaseDate"
+                   class="full-width unstyled-date"
+                   id="release-date"
+                   name="release-date"
+                   type="date">
+          </div>
+
+          <div class="form-field">
+            <label for="type">Phone number *</label>
+            <input [(ngModel)]="userProfileInput.phoneNumber"
+                   class="input100"
+                   id="phone-number"
+                   name="phone-number"
+                   type="text">
+          </div>
+
+          <div class="form-field">
+            <label for="birth-date">Birth date *</label>
+            <input [(ngModel)]="userProfileInput.dateOfBirth"
+                   class="full-width unstyled-date"
+                   id="birth-date"
+                   name="birth-date"
+                   type="date">
+          </div>
+
+          <div class="form-field">
+            <label *ngIf="userProfileInput.type == 'Student'"
+                   for="student-branch">Student branch *</label>
+            <select *ngIf="userProfileInput.type == 'Student'"
+                    [(ngModel)]="userProfileInput.studentBranch"
+                    class="full-width"
+                    id="student-branch"
+                    name="student-branch">
+              <option>ENIT</option>
+              <option>ENIS</option>
+              <option>ENSI</option>
+              <option>SUP'COM</option>
+              <option>ENISO</option>
+              <option>ENICAR</option>
+              <option>INSAT</option>
+              <option>ENIG</option>
+              <option>FST</option>
+              <option>ENIB</option>
+              <option>ENSIT</option>
+              <option>ENIM</option>
+              <option>ENETCOM</option>
+              <option>ULT</option>
+              <option>ISSAT</option>
+              <option>ENSTAB</option>
+              <option>ISET Djerba</option>
+              <option>ISET’Com</option>
+              <option>Polytechnic Sousse</option>
+              <option>Polytechnic Monastir</option>
+              <option>ISI</option>
+              <option>ISET Rades</option>
+              <option>INAT</option>
+              <option>TEK-UP</option>
+              <option>FSS</option>
+              <option>ESPRIT</option>
+              <option>SESAME</option>
+              <option>ISI Mahdia</option>
+              <option>IIT</option>
+              <option>Polytechnic Sfax</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="payment-receipt">Payment receipt *</label>
+            <input (change)="uploadFile($event)"
+                   accept=".png,.jpg"
+                   class="full-width"
+                   id="payment-receipt"
+                   name="payment-receipt"
+                   type="file">
+          </div>
+
+          <div class="form-field">
+            <label for="accommodation">Accommodation *</label>
+            <select [(ngModel)]="userProfileInput.accommodation"
+                    class="full-width"
+                    id="accommodation"
+                    name="accommodation">
+              <option *ngIf="(diarLemdina | async)?.count < 1">Diar Lemdina
+              </option>
+              <option *ngIf="(eden | async)?.count < 1">Eden</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <button (click)="update()"
+                    class="full-width btn--primary">Submit
+            </button>
             <div class="submit-loader">
               <div class="text-loader">Sending...</div>
               <div class="s-loader">
