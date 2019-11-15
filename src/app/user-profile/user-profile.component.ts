@@ -28,6 +28,7 @@ export class UserProfileComponent {
   private edenDoc;
   private eden;
   private isAlreadyRegistred = false;
+  private isSuccess = false;
 
   constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private storage: AngularFireStorage,
               private fns: AngularFireFunctions, public datepipe: DatePipe) {
@@ -90,6 +91,8 @@ export class UserProfileComponent {
     }).catch((error: any) => {
       console.log(error);
     });
+
+    this.isSuccess = true;
   }
 
   uploadFile(event) {
