@@ -169,9 +169,20 @@
           </div>
 
           <div class="form-field">
-            <label for="release-date">Release date *</label>
+            <label *ngIf="releaseDate.valid || releaseDate.untouched"
+                   for="release-date">
+              Release date *
+            </label>
+            <label *ngIf="releaseDate.invalid && releaseDate.touched"
+                   class="label-warning"
+                   for="release-date">
+              Release date is required!
+            </label>
             <input [(ngModel)]="userProfileInput.releaseDate"
-                   class="full-width unstyled-date"
+                   #releaseDate="ngModel"
+                   class="full-width unstyled-date form-control"
+                   ngModel
+                   required
                    id="release-date"
                    name="release-date"
                    type="date">
