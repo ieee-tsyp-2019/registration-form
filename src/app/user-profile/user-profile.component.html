@@ -120,7 +120,13 @@
           </div>
 
           <div class="form-field">
-            <label for="member-number">IEEE member number *</label>
+            <label *ngIf="memberNumber.valid || memberNumber.untouched"
+                   for="member-number">
+              IEEE member number *
+            </label>
+            <label *ngIf="memberNumber.invalid && memberNumber.touched"
+                   class="label-warning"
+                   for="member-number">IEEE member number is invalid!</label>
             <input [(ngModel)]="userProfileInput.memberNumber"
                    class="full-width"
                    id="member-number"
