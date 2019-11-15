@@ -90,6 +90,8 @@ export class UserProfileComponent {
       console.log(error);
     });
 
+    this.userProfileDoc.set(Object.assign({}, this.userProfileInput));
+
     this.isSuccess = true;
   }
 
