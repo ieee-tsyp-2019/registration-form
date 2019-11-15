@@ -79,10 +79,21 @@
           </div>
 
           <div *ngIf="userProfileInput.type == 'Student'" class="form-field">
-            <label for="student-branch">Student branch *</label>
+            <label *ngIf="studentBranch.valid || studentBranch.untouched"
+                   for="student-branch">
+              Student branch *
+            </label>
+            <label *ngIf="studentBranch.invalid && studentBranch.touched"
+                   class="label-warning"
+                   for="student-branch">
+              Student branch is required!
+            </label>
             <select [(ngModel)]="userProfileInput.studentBranch"
-                    class="full-width"
+                    #studentBranch="ngModel"
+                    class="full-width form-control"
                     id="student-branch"
+                    ngModel
+                    required
                     name="student-branch">
               <option>ENIT</option>
               <option>ENIS</option>
