@@ -29,6 +29,8 @@ export class UserProfileComponent {
   private isAlreadyRegistred = false;
   private isSuccess = false;
   private paymentReceiptFile = undefined;
+  private diarLemdinaLimit = 1;
+  private edenLimit = 1;
 
   constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private storage: AngularFireStorage,
               private fns: AngularFireFunctions, public datepipe: DatePipe) {
