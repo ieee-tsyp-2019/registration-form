@@ -34,6 +34,7 @@
             *ngIf="!isAlreadyRegistred
                       && ((diarLemdina | async)?.count < diarLemdinaLimit
                       || (eden | async)?.count < edenLimit)"
+            #registrationForm="ngForm"
             (ngSubmit)="update()"
             novalidate="novalidate">
         <fieldset>
