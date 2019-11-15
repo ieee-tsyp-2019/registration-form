@@ -40,15 +40,13 @@
         <fieldset>
 
           <div class="form-field">
-            <label for="type">Student or YP? *</label>
-            <select [(ngModel)]="userProfileInput.type"
-                    class="full-width"
-                    id="type"
-                    name="type"
-                    required="">
-              <option>Student</option>
-              <option>Young professional</option>
-            </select>
+            <label for="type">Full name *</label>
+            <input [(ngModel)]="userProfileInput.fullName"
+                   class="full-width"
+                   disabled
+                   id="full-name"
+                   name="full-name"
+                   type="text">
           </div>
 
           <div class="form-field">
@@ -62,58 +60,15 @@
           </div>
 
           <div class="form-field">
-            <label for="type">IEEE member number *</label>
-            <input [(ngModel)]="userProfileInput.memberNumber"
-                   class="full-width"
-                   id="member-number"
-                   name="member-number"
-                   type="text">
-          </div>
-
-          <div class="form-field">
-            <label for="type">Full name *</label>
-            <input [(ngModel)]="userProfileInput.fullName"
-                   class="full-width"
-                   disabled
-                   id="full-name"
-                   name="full-name"
-                   type="text">
-          </div>
-
-          <div class="form-field">
-            <label for="type">National identity card number *</label>
-            <input [(ngModel)]="userProfileInput.cin"
-                   class="full-width"
-                   id="cin"
-                   name="cin"
-                   type="text">
-          </div>
-
-          <div class="form-field">
-            <label for="type">Release date *</label>
-            <input [(ngModel)]="userProfileInput.releaseDate"
-                   class="full-width unstyled-date"
-                   id="release-date"
-                   name="release-date"
-                   type="date">
-          </div>
-
-          <div class="form-field">
-            <label for="type">Phone number *</label>
-            <input [(ngModel)]="userProfileInput.phoneNumber"
-                   class="full-width"
-                   id="phone-number"
-                   name="phone-number"
-                   type="text">
-          </div>
-
-          <div class="form-field">
-            <label for="birth-date">Birth date *</label>
-            <input [(ngModel)]="userProfileInput.dateOfBirth"
-                   class="full-width unstyled-date"
-                   id="birth-date"
-                   name="birth-date"
-                   type="date">
+            <label for="type">Student or YP? *</label>
+            <select [(ngModel)]="userProfileInput.type"
+                    class="full-width"
+                    id="type"
+                    name="type"
+                    required="">
+              <option>Student</option>
+              <option>Young professional</option>
+            </select>
           </div>
 
           <div class="form-field">
@@ -155,6 +110,51 @@
               <option>IIT</option>
               <option>Polytechnic Sfax</option>
             </select>
+          </div>
+
+          <div class="form-field">
+            <label for="type">IEEE member number *</label>
+            <input [(ngModel)]="userProfileInput.memberNumber"
+                   class="full-width"
+                   id="member-number"
+                   name="member-number"
+                   type="text">
+          </div>
+
+          <div class="form-field">
+            <label for="type">National identity card number *</label>
+            <input [(ngModel)]="userProfileInput.cin"
+                   class="full-width"
+                   id="cin"
+                   name="cin"
+                   type="text">
+          </div>
+
+          <div class="form-field">
+            <label for="type">Release date *</label>
+            <input [(ngModel)]="userProfileInput.releaseDate"
+                   class="full-width unstyled-date"
+                   id="release-date"
+                   name="release-date"
+                   type="date">
+          </div>
+
+          <div class="form-field">
+            <label for="type">Phone number *</label>
+            <input [(ngModel)]="userProfileInput.phoneNumber"
+                   class="full-width"
+                   id="phone-number"
+                   name="phone-number"
+                   type="text">
+          </div>
+
+          <div class="form-field">
+            <label for="birth-date">Birth date *</label>
+            <input [(ngModel)]="userProfileInput.dateOfBirth"
+                   class="full-width unstyled-date"
+                   id="birth-date"
+                   name="birth-date"
+                   type="date">
           </div>
 
           <div class="form-field">
