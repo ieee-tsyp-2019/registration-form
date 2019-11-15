@@ -171,9 +171,10 @@
                     class="full-width"
                     id="accommodation"
                     name="accommodation">
-              <option *ngIf="(diarLemdina | async)?.count < 1">Diar Lemdina
+              <option *ngIf="(diarLemdina | async)?.count < diarLemdinaLimit">
+                Diar Lemdina
               </option>
-              <option *ngIf="(eden | async)?.count < 1">Eden</option>
+              <option *ngIf="(eden | async)?.count < edenLimit">Eden</option>
             </select>
           </div>
 
