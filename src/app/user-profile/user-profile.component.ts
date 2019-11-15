@@ -69,7 +69,6 @@ export class UserProfileComponent {
           if (this.userProfileInput.email) {
             // TODO: Make filePath a class attribute
             const filePath = 'users/' + this.userProfileInput.email + '/payment-receipt';
-            this.loadPaymentReceipt(filePath);
           }
         });
 
@@ -100,13 +99,6 @@ export class UserProfileComponent {
     const filePath = 'users/' + this.userProfileInput.email + '/payment-receipt';
     const task = this.storage.upload(filePath, file);
     this.uploadProgress = task.percentageChanges();
-
-    this.loadPaymentReceipt(filePath);
-  }
-
-  loadPaymentReceipt(filePath) {
-    const ref = this.storage.ref(filePath);
-    this.paymentReceiptUrl = ref.getDownloadURL();
   }
 
 }
