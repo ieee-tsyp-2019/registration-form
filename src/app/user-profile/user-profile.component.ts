@@ -27,6 +27,7 @@ export class UserProfileComponent {
   private diarLemdina;
   private edenDoc;
   private eden;
+  private isAlreadyRegistred = false;
 
   constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private storage: AngularFireStorage,
               private fns: AngularFireFunctions, public datepipe: DatePipe) {
@@ -60,6 +61,8 @@ export class UserProfileComponent {
               todayDateString,
               '',
               '');
+          } else {
+            this.isAlreadyRegistred = true;
           }
 
           if (this.userProfileInput.email) {
