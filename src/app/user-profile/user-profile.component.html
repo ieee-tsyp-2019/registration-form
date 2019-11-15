@@ -20,12 +20,13 @@
     <div class="contact-primary">
       <app-login></app-login>
 
-      <h3 class="h6">
+      <h3 *ngIf="!isAlreadyRegistred" class="h6">
         Please confirm all the provided information are correct and accurate
         before submitting the registration form.
       </h3>
 
       <form action="" id="contactForm" method="post" name="contactForm"
+            *ngIf="!isAlreadyRegistred"
             novalidate="novalidate">
         <fieldset>
 
@@ -187,8 +188,9 @@
       </form>
 
       <!-- contact-warning -->
-      <div class="message-warning">
-        Something went wrong. Please try again.
+      <div *ngIf="isAlreadyRegistred" class="message-warning">
+        {{ userProfileInput.email }} is already registered. Please contact us
+        if there is any problem.
       </div>
 
       <!-- contact-success -->
