@@ -36,7 +36,7 @@ export class UserProfileComponent {
               private fns: AngularFireFunctions, public datepipe: DatePipe) {
     const todayDateString: string = this.datepipe.transform(new Date(), 'yyyy-MM-dd');
     this.userProfileInput = new UserProfile(
-      '',
+      'Student',
       '',
       '',
       '',
@@ -54,7 +54,7 @@ export class UserProfileComponent {
           this.userProfileInput = userProfile;
           if (!this.userProfileInput) {
             this.userProfileInput = new UserProfile(
-              '',
+              'Student',
               user.email ? user.email : '',
               '',
               user.displayName ? user.displayName : '',
