@@ -207,7 +207,9 @@
       </div>
 
       <div *ngIf="!((diarLemdina | async)?.count < diarLemdinaLimit
-                      || (eden | async)?.count < edenLimit)"
+                      || (eden | async)?.count < edenLimit)
+                      && !isSuccess
+                      && !isAlreadyRegistred"
            class="message-warning">
         Sorry, no more places left.
       </div>
