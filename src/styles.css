@@ -13,3 +13,11 @@ option {
   display: none;
   -webkit-appearance: none;
 }
+
+.label-warning {
+  background: #b33a3a !important;
+}
+
+.label-warning::after {
+  border-right-color: #b33a3a !important;
+}
