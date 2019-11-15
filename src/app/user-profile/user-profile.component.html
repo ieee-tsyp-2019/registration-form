@@ -61,7 +61,11 @@
           </div>
 
           <div class="form-field">
-            <label for="type">Student or YP? *</label>
+            <label *ngIf="type.valid || type.untouched" for="type">Student or
+              YP? *</label>
+            <label *ngIf="type.invalid && type.touched"
+                   class="label-warning"
+                   for="type">This field is required!</label>
             <select [(ngModel)]="userProfileInput.type"
                     class="full-width"
                     id="type"
