@@ -194,8 +194,9 @@
       </div>
 
       <!-- contact-success -->
-      <div class="message-success">
-        Your message was sent, thank you!<br>
+      <div *ngIf="isSuccess" class="message-success">
+        Your registration was successful! You will be redirected to our
+        Facebook page in in 5 seconds...
       </div>
 
     </div> <!-- end contact-primary -->
