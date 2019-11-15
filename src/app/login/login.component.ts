@@ -10,6 +10,11 @@ import {auth} from 'firebase';
 export class LoginComponent implements OnInit {
 
   constructor(public afAuth: AngularFireAuth) {
+    this.afAuth.auth.onAuthStateChanged(user => {
+      if (!user) {
+        this.login();
+      }
+    });
   }
 
   ngOnInit() {
