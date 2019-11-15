@@ -128,9 +128,13 @@
                    class="label-warning"
                    for="member-number">IEEE member number is invalid!</label>
             <input [(ngModel)]="userProfileInput.memberNumber"
-                   class="full-width"
+                   #memberNumber="ngModel"
                    id="member-number"
                    name="member-number"
+                   class="full-width form-control"
+                   ngModel
+                   pattern="[0-9]{8}"
+                   required
                    type="text">
           </div>
 
