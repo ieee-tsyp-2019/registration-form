@@ -67,9 +67,11 @@
                    class="label-warning"
                    for="type">This field is required!</label>
             <select [(ngModel)]="userProfileInput.type"
-                    class="full-width"
+                    #type="ngModel"
                     id="type"
                     name="type"
+                    class="full-width form-control"
+                    ngModel
                     required="">
               <option>Student</option>
               <option>Young professional</option>
