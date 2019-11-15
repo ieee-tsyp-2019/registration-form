@@ -148,9 +148,21 @@
           </div>
 
           <div class="form-field">
-            <label for="cin">National identity card number *</label>
+            <label *ngIf="cin.valid || cin.untouched"
+                   for="cin">
+              National identity card number *
+            </label>
+            <label *ngIf="cin.invalid && cin.touched"
+                   class="label-warning"
+                   for="cin">
+              National identity card number is invalid!
+            </label>
             <input [(ngModel)]="userProfileInput.cin"
-                   class="full-width"
+                   #cin="ngModel"
+                   class="full-width form-control"
+                   ngModel
+                   pattern="[0-9]{8}"
+                   required
                    id="cin"
                    name="cin"
                    type="text">
