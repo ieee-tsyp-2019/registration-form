@@ -23,13 +23,17 @@
     <div class="contact-primary">
       <app-login></app-login>
 
-      <h3 *ngIf="!isAlreadyRegistred" class="h6">
+      <h3 *ngIf="!isAlreadyRegistred
+                    && ((diarLemdina | async)?.count < diarLemdinaLimit
+                    || (eden | async)?.count < edenLimit)" class="h6">
         Please confirm all the provided information are correct and accurate
         before submitting the registration form.
       </h3>
 
       <form action="" id="contactForm" method="post" name="contactForm"
-            *ngIf="!isAlreadyRegistred"
+            *ngIf="!isAlreadyRegistred
+                      && ((diarLemdina | async)?.count < diarLemdinaLimit
+                      || (eden | async)?.count < edenLimit)"
             novalidate="novalidate">
         <fieldset>
 
@@ -200,6 +204,12 @@
       <div *ngIf="isSuccess" class="message-success">
         Your registration was successful! You will be redirected to our
         Facebook page in in 5 seconds...
+      </div>
+
+      <div *ngIf="!((diarLemdina | async)?.count < diarLemdinaLimit
+                      || (eden | async)?.count < edenLimit)"
+           class="message-warning">
+        Sorry, no more places left.
       </div>
 
     </div> <!-- end contact-primary -->
