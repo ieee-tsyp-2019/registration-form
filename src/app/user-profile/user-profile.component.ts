@@ -1,10 +1,11 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {UserProfile} from '../user-profile';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {AngularFireFunctions} from '@angular/fire/functions';
+import {FormControl, NgModel} from '@angular/forms';
 
 export interface Accommodation {
   count: number;
@@ -32,7 +33,7 @@ export class UserProfileComponent {
   @ViewChild('registrationForm', {static: false}) registrationForm;
 
   constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private storage: AngularFireStorage,
-              private fns: AngularFireFunctions) {
+              private fns: AngularFireFunctions, private el: ElementRef) {
     this.userProfileInput = new UserProfile(
       '',
       '',
