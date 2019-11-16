@@ -1,11 +1,12 @@
-import {Component} from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {UserProfile} from '../user-profile';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {AngularFireFunctions} from '@angular/fire/functions';
-import {DatePipe} from '@angular/common';
+import {FormControl, NgModel} from '@angular/forms';
+import {finalize} from 'rxjs/operators';
 
 export interface Accommodation {
   count: number;
@@ -21,25 +22,30 @@ export class UserProfileComponent {
   private userProfileDoc: AngularFirestoreDocument<UserProfile>;
   private userProfile: Observable<UserProfile | undefined>;
   private userProfileSubscription;
-  private uploadProgress;
-  private paymentReceiptUrl;
   private diarLemdinaDoc;
   private diarLemdina;
   private edenDoc;
   private eden;
+  private isAlreadyRegistred = false;
+  private isSuccess = false;
+  private isLoading = false;
+  private isError = false;
+  private paymentReceiptFile = undefined;
+  private diarLemdinaLimit = 1;
+  private edenLimit = 1;
+  @ViewChild('registrationForm', {static: false}) registrationForm;
 
   constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private storage: AngularFireStorage,
-              private fns: AngularFireFunctions, public datepipe: DatePipe) {
-    const todayDateString: string = this.datepipe.transform(new Date(), 'yyyy-MM-dd');
+              private fns: AngularFireFunctions, private el: ElementRef) {
     this.userProfileInput = new UserProfile(
       '',
       '',
       '',
       '',
       '',
-      todayDateString,
       '',
-      todayDateString,
+      '',
+      '',
       '',
       '');
     this.afAuth.auth.onAuthStateChanged(user => {
@@ -55,17 +61,18 @@ export class UserProfileComponent {
               '',
               user.displayName ? user.displayName : '',
               '',
-              todayDateString,
+              '',
               user.phoneNumber ? user.phoneNumber : '',
-              todayDateString,
+              '',
               '',
               '');
+          } else {
+            this.isAlreadyRegistred = true;
           }
 
           if (this.userProfileInput.email) {
             // TODO: Make filePath a class attribute
             const filePath = 'users/' + this.userProfileInput.email + '/payment-receipt';
-            this.loadPaymentReceipt(filePath);
           }
         });
 
@@ -79,28 +86,60 @@ export class UserProfileComponent {
   }
 
   update() {
-    this.userProfileDoc.set(Object.assign({}, this.userProfileInput));
+    this.isError = false;
 
-    const callable = this.fns.httpsCallable('setAccommodation');
-    callable({accommodation: this.userProfileInput.accommodation}).toPromise().then((result: any) => {
-      console.log(result);
-    }).catch((error: any) => {
-      console.log(error);
-    });
+    if (!this.registrationForm.valid) {
+      let firstInvalidControl: FormControl;
+      Object.keys(this.registrationForm.form.controls).forEach(field => {
+        const control = this.registrationForm.form.get(field);
+        control.markAsTouched({onlySelf: true});
+
+        if (!firstInvalidControl && control.invalid) {
+          firstInvalidControl = control;
+        }
+      });
+
+      this.registrationForm._directives.some((field: NgModel) => {
+        if (field.control === firstInvalidControl) {
+          const nativeElement = this.el.nativeElement
+            .querySelector('#' + field.name);
+
+          if (nativeElement) {
+            setTimeout(() => nativeElement.focus());
+          }
+
+          return true;
+        }
+      });
+
+      return;
+    } else {
+      this.isLoading = true;
+
+      const filePath = 'users/' + this.userProfileInput.email + '/payment-receipt';
+      const task = this.storage.upload(filePath, this.paymentReceiptFile);
+      task.snapshotChanges().pipe(
+        finalize(() => {
+          const callable = this.fns.httpsCallable('setAccommodation');
+          callable({accommodation: this.userProfileInput.accommodation}).toPromise().then(() => {
+            this.userProfileDoc.set(Object.assign({}, this.userProfileInput)).then(() => {
+              this.isLoading = false;
+              this.isSuccess = true;
+              setTimeout(() => {
+                window.location.href = 'https://www.facebook.com/ieee.tsyp';
+              }, 5000);
+            });
+          }).catch(() => {
+            this.isLoading = false;
+            this.isError = true;
+          });
+        })
+      ).subscribe();
+    }
   }
 
   uploadFile(event) {
-    const file = event.target.files[0];
-    const filePath = 'users/' + this.userProfileInput.email + '/payment-receipt';
-    const task = this.storage.upload(filePath, file);
-    this.uploadProgress = task.percentageChanges();
-
-    this.loadPaymentReceipt(filePath);
-  }
-
-  loadPaymentReceipt(filePath) {
-    const ref = this.storage.ref(filePath);
-    this.paymentReceiptUrl = ref.getDownloadURL();
+    this.paymentReceiptFile = event.target.files[0];
   }
 
 }

@@ -13,7 +13,6 @@ import {UserProfileComponent} from './user-profile/user-profile.component';
 import {AngularFireAuthGuard} from '@angular/fire/auth-guard';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireFunctionsModule} from '@angular/fire/functions';
-import {DatePipe} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -34,7 +33,7 @@ import {DatePipe} from '@angular/common';
     AngularFireStorageModule,
     AngularFireFunctionsModule
   ],
-  providers: [AngularFireAuthGuard, DatePipe],
+  providers: [AngularFireAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

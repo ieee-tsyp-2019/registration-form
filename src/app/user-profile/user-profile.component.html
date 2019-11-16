@@ -8,8 +8,11 @@
   <div class="row section-header">
     <div class="col-full">
       <h3 class="subhead">
-        <mark>7th</mark>
+        7<sup>th</sup>
         IEEE Tunisian Students and Young Professionals Congress (TSYP)
+      </h3>
+      <h3 class="subhead">
+        <mark>December 15<sup>th</sup> - 17<sup>th</sup> 2019</mark>
       </h3>
       <h1 class="display-2 display-2--light">Registration form</h1>
     </div>
@@ -20,48 +23,25 @@
     <div class="contact-primary">
       <app-login></app-login>
 
-      <h3 class="h6">
+      <h3 *ngIf="!isAlreadyRegistred
+                    && ((diarLemdina | async)?.count < diarLemdinaLimit
+                    || (eden | async)?.count < edenLimit)" class="h6">
         Please confirm all the provided information are correct and accurate
         before submitting the registration form.
       </h3>
 
       <form action="" id="contactForm" method="post" name="contactForm"
+            *ngIf="!isAlreadyRegistred
+                      && ((diarLemdina | async)?.count < diarLemdinaLimit
+                      || (eden | async)?.count < edenLimit)"
+            #registrationForm="ngForm"
+            (ngSubmit)="update()"
+            class="form-group"
             novalidate="novalidate">
         <fieldset>
 
           <div class="form-field">
-            <label for="type">Student or YP? *</label>
-            <select [(ngModel)]="userProfileInput.type"
-                    class="full-width"
-                    id="type"
-                    name="type"
-                    required="">
-              <option>Student</option>
-              <option>Young professional</option>
-            </select>
-          </div>
-
-          <div class="form-field">
-            <label for="type">IEEE email *</label>
-            <input [(ngModel)]="userProfileInput.email"
-                   class="full-width"
-                   disabled
-                   id="email"
-                   name="email"
-                   type="text">
-          </div>
-
-          <div class="form-field">
-            <label for="type">IEEE member number *</label>
-            <input [(ngModel)]="userProfileInput.memberNumber"
-                   class="full-width"
-                   id="member-number"
-                   name="member-number"
-                   type="text">
-          </div>
-
-          <div class="form-field">
-            <label for="type">Full name *</label>
+            <label for="type">Full name</label>
             <input [(ngModel)]="userProfileInput.fullName"
                    class="full-width"
                    disabled
@@ -71,48 +51,49 @@
           </div>
 
           <div class="form-field">
-            <label for="type">National identity card number *</label>
-            <input [(ngModel)]="userProfileInput.cin"
+            <label for="type">IEEE email</label>
+            <input [(ngModel)]="userProfileInput.email"
                    class="full-width"
-                   id="cin"
-                   name="cin"
+                   disabled
+                   id="email"
+                   name="email"
                    type="text">
           </div>
 
           <div class="form-field">
-            <label for="type">Release date *</label>
-            <input [(ngModel)]="userProfileInput.releaseDate"
-                   class="full-width unstyled-date"
-                   id="release-date"
-                   name="release-date"
-                   type="date">
+            <label *ngIf="type.valid || type.untouched" for="type">Student or
+              YP? *</label>
+            <label *ngIf="type.invalid && type.touched"
+                   class="label-warning"
+                   for="type">This field is required!</label>
+            <select [(ngModel)]="userProfileInput.type"
+                    #type="ngModel"
+                    id="type"
+                    name="type"
+                    class="full-width form-control"
+                    ngModel
+                    required="">
+              <option>Student</option>
+              <option>Young professional</option>
+            </select>
           </div>
 
-          <div class="form-field">
-            <label for="type">Phone number *</label>
-            <input [(ngModel)]="userProfileInput.phoneNumber"
-                   class="input100"
-                   id="phone-number"
-                   name="phone-number"
-                   type="text">
-          </div>
-
-          <div class="form-field">
-            <label for="birth-date">Birth date *</label>
-            <input [(ngModel)]="userProfileInput.dateOfBirth"
-                   class="full-width unstyled-date"
-                   id="birth-date"
-                   name="birth-date"
-                   type="date">
-          </div>
-
-          <div class="form-field">
-            <label *ngIf="userProfileInput.type == 'Student'"
-                   for="student-branch">Student branch *</label>
-            <select *ngIf="userProfileInput.type == 'Student'"
-                    [(ngModel)]="userProfileInput.studentBranch"
-                    class="full-width"
+          <div *ngIf="userProfileInput.type == 'Student'" class="form-field">
+            <label *ngIf="studentBranch.valid || studentBranch.untouched"
+                   for="student-branch">
+              Student branch *
+            </label>
+            <label *ngIf="studentBranch.invalid && studentBranch.touched"
+                   class="label-warning"
+                   for="student-branch">
+              Student branch is required!
+            </label>
+            <select [(ngModel)]="userProfileInput.studentBranch"
+                    #studentBranch="ngModel"
+                    class="full-width form-control"
                     id="student-branch"
+                    ngModel
+                    required
                     name="student-branch">
               <option>ENIT</option>
               <option>ENIS</option>
@@ -148,32 +129,145 @@
           </div>
 
           <div class="form-field">
-            <label for="payment-receipt">Payment receipt *</label>
+            <label *ngIf="memberNumber.valid || memberNumber.untouched"
+                   for="member-number">
+              IEEE member number *
+            </label>
+            <label *ngIf="memberNumber.invalid && memberNumber.touched"
+                   class="label-warning"
+                   for="member-number">IEEE member number is invalid!</label>
+            <input [(ngModel)]="userProfileInput.memberNumber"
+                   #memberNumber="ngModel"
+                   id="member-number"
+                   name="member-number"
+                   class="full-width form-control"
+                   ngModel
+                   pattern="[0-9]{8}"
+                   required
+                   type="text">
+          </div>
+
+          <div class="form-field">
+            <label *ngIf="cin.valid || cin.untouched"
+                   for="cin">
+              National identity card number *
+            </label>
+            <label *ngIf="cin.invalid && cin.touched"
+                   class="label-warning"
+                   for="cin">
+              National identity card number is invalid!
+            </label>
+            <input [(ngModel)]="userProfileInput.cin"
+                   #cin="ngModel"
+                   class="full-width form-control"
+                   ngModel
+                   pattern="[0-9]{8}"
+                   required
+                   id="cin"
+                   name="cin"
+                   type="text">
+          </div>
+
+          <div class="form-field">
+            <label *ngIf="releaseDate.valid || releaseDate.untouched"
+                   for="release-date">
+              Release date *
+            </label>
+            <label *ngIf="releaseDate.invalid && releaseDate.touched"
+                   class="label-warning"
+                   for="release-date">
+              Release date is required!
+            </label>
+            <input [(ngModel)]="userProfileInput.releaseDate"
+                   #releaseDate="ngModel"
+                   class="full-width unstyled-date form-control"
+                   ngModel
+                   required
+                   id="release-date"
+                   name="release-date"
+                   type="date">
+          </div>
+
+          <div class="form-field">
+            <label *ngIf="phoneNumber.valid || phoneNumber.untouched"
+                   for="phone-number">
+              Phone number *
+            </label>
+            <label *ngIf="phoneNumber.invalid && phoneNumber.touched"
+                   class="label-warning"
+                   for="phone-number">
+              Phone number is invalid!
+            </label>
+            <input [(ngModel)]="userProfileInput.phoneNumber"
+                   #phoneNumber="ngModel"
+                   class="full-width form-control"
+                   ngModel
+                   pattern="\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|4[987654310]|3[9643210]|2[70]|7|1)\d{1,14}$"
+                   id="phone-number"
+                   name="phone-number"
+                   required
+                   type="tel">
+          </div>
+
+          <div class="form-field">
+            <label for="birth-date">Birth date</label>
+            <input [(ngModel)]="userProfileInput.dateOfBirth"
+                   class="full-width unstyled-date"
+                   id="birth-date"
+                   name="birth-date"
+                   type="date">
+          </div>
+
+          <div class="form-field">
+            <label *ngIf="paymentReceipt.valid || paymentReceipt.untouched"
+                   for="payment-receipt">
+              Payment receipt *
+            </label>
+            <label *ngIf="paymentReceipt.invalid && paymentReceipt.touched"
+                   class="label-warning"
+                   for="payment-receipt">
+              Payment receipt is required!
+            </label>
             <input (change)="uploadFile($event)"
                    accept=".png,.jpg"
                    class="full-width"
                    id="payment-receipt"
-                   name="payment-receipt"
+                   #paymentReceipt="ngModel"
+                   name="payment-receipt form-control"
+                   ngModel
+                   required
                    type="file">
           </div>
 
           <div class="form-field">
-            <label for="accommodation">Accommodation *</label>
+            <label *ngIf="accommodation.valid || accommodation.untouched"
+                   for="accommodation">
+              Accommodation *
+            </label>
+            <label *ngIf="accommodation.invalid && accommodation.touched"
+                   class="label-warning"
+                   for="accommodation">
+              Accommodation is required!
+            </label>
             <select [(ngModel)]="userProfileInput.accommodation"
-                    class="full-width"
+                    #accommodation="ngModel"
+                    class="full-width form-control"
+                    ngModel
+                    required
                     id="accommodation"
                     name="accommodation">
-              <option *ngIf="(diarLemdina | async)?.count < 1">Diar Lemdina
+              <option *ngIf="(diarLemdina | async)?.count < diarLemdinaLimit">
+                Diar Lemdina
               </option>
-              <option *ngIf="(eden | async)?.count < 1">Eden</option>
+              <option *ngIf="(eden | async)?.count < edenLimit">Eden</option>
             </select>
           </div>
 
           <div class="form-field">
-            <button (click)="update()"
+            <button type="submit"
                     class="full-width btn--primary">Submit
             </button>
-            <div class="submit-loader">
+            <div *ngIf="isLoading" class="submit-loader">
               <div class="text-loader">Sending...</div>
               <div class="s-loader">
                 <div class="bounce1"></div>
@@ -187,13 +281,28 @@
       </form>
 
       <!-- contact-warning -->
-      <div class="message-warning">
-        Something went wrong. Please try again.
+      <div *ngIf="isAlreadyRegistred && !isSuccess" class="message-warning">
+        {{ userProfileInput.email }} is already registered. Please contact us
+        if there is any problem.
       </div>
 
       <!-- contact-success -->
-      <div class="message-success">
-        Your message was sent, thank you!<br>
+      <div *ngIf="isSuccess" class="message-success">
+        Your registration was successful! You will be redirected to our
+        Facebook page in in 5 seconds...
+      </div>
+
+      <div *ngIf="!((diarLemdina | async)?.count < diarLemdinaLimit
+                      || (eden | async)?.count < edenLimit)
+                      && !isSuccess
+                      && !isAlreadyRegistred"
+           class="message-warning">
+        Sorry, no more places left.
+      </div>
+
+      <div *ngIf="isError && !isLoading"
+           class="message-warning">
+        Something bad happened. Please try again later.
       </div>
 
     </div> <!-- end contact-primary -->
@@ -204,25 +313,27 @@
         <h3 class="h6 hide-on-fullwidth">Contact Info</h3>
 
         <div class="cinfo">
-          <h5>Address</h5>
+          <h5>Venue</h5>
           <p>
-            Medina, Yasmine Hammamet
+            Medina Convention Center<br>
+            Yasmine Hammamet<br>
+            Tunisia
           </p>
         </div>
 
         <div class="cinfo">
-          <h5>Email Us At</h5>
+          <h5>Email us at</h5>
           <p>
-            tsyp@ieee.org
+            <a href="mailto:tsyp@ieee.org">tsyp@ieee.org</a>
           </p>
         </div>
 
         <div class="cinfo">
-          <h5>Call Us At</h5>
+          <h5>Call us at</h5>
           <p>
-            (+216) 54 557 486<br>
-            (+216) 29 024 205<br>
-            (+216) 23 209 400
+            <a href="tel:+21654557486">(+216) 54 557 486</a><br>
+            <a href="tel:+21629024205">(+216) 29 024 205</a><br>
+            <a href="tel:+21623209400">(+216) 23 209 400</a>
           </p>
         </div>
 
