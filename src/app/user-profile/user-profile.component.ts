@@ -83,7 +83,14 @@ export class UserProfileComponent {
   }
 
   update() {
-    this.userProfileDoc.set(Object.assign({}, this.userProfileInput));
+    if (!this.registrationForm.valid) {
+      Object.keys(this.registrationForm.form.controls).forEach(field => {
+        const control = this.registrationForm.form.get(field);
+        control.markAsTouched({onlySelf: true});
+      });
+
+      return;
+    }
 
     const callable = this.fns.httpsCallable('setAccommodation');
     callable({accommodation: this.userProfileInput.accommodation}).toPromise().then((result: any) => {
