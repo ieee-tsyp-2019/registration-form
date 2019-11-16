@@ -84,9 +84,27 @@ export class UserProfileComponent {
 
   update() {
     if (!this.registrationForm.valid) {
+      let firstInvalidControl: FormControl;
       Object.keys(this.registrationForm.form.controls).forEach(field => {
         const control = this.registrationForm.form.get(field);
         control.markAsTouched({onlySelf: true});
+
+        if (!firstInvalidControl && control.invalid) {
+          firstInvalidControl = control;
+        }
+      });
+
+      this.registrationForm._directives.some((field: NgModel) => {
+        if (field.control === firstInvalidControl) {
+          const nativeElement = this.el.nativeElement
+            .querySelector('#' + field.name);
+
+          if (nativeElement) {
+            setTimeout(() => nativeElement.focus());
+          }
+
+          return true;
+        }
       });
 
       return;
