@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
 import {AngularFireAuth} from '@angular/fire/auth';
@@ -30,6 +30,7 @@ export class UserProfileComponent {
   private paymentReceiptFile = undefined;
   private diarLemdinaLimit = 1;
   private edenLimit = 1;
+  @ViewChild('registrationForm', {static: false}) registrationForm;
 
   constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private storage: AngularFireStorage,
               private fns: AngularFireFunctions) {
