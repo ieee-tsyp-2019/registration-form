@@ -267,7 +267,7 @@
             <button type="submit"
                     class="full-width btn--primary">Submit
             </button>
-            <div class="submit-loader">
+            <div *ngIf="isLoading" class="submit-loader">
               <div class="text-loader">Sending...</div>
               <div class="s-loader">
                 <div class="bounce1"></div>
