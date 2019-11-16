@@ -6,6 +6,7 @@ import {UserProfile} from '../user-profile';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {AngularFireFunctions} from '@angular/fire/functions';
 import {FormControl, NgModel} from '@angular/forms';
+import {finalize} from 'rxjs/operators';
 
 export interface Accommodation {
   count: number;
@@ -27,6 +28,8 @@ export class UserProfileComponent {
   private eden;
   private isAlreadyRegistred = false;
   private isSuccess = false;
+  private isLoading = false;
+  private isError = false;
   private paymentReceiptFile = undefined;
   private diarLemdinaLimit = 1;
   private edenLimit = 1;
@@ -83,6 +86,8 @@ export class UserProfileComponent {
   }
 
   update() {
+    this.isError = false;
+
     if (!this.registrationForm.valid) {
       let firstInvalidControl: FormControl;
       Object.keys(this.registrationForm.form.controls).forEach(field => {
@@ -108,18 +113,29 @@ export class UserProfileComponent {
       });
 
       return;
+    } else {
+      this.isLoading = true;
+
+      const filePath = 'users/' + this.userProfileInput.email + '/payment-receipt';
+      const task = this.storage.upload(filePath, this.paymentReceiptFile);
+      task.snapshotChanges().pipe(
+        finalize(() => {
+          const callable = this.fns.httpsCallable('setAccommodation');
+          callable({accommodation: this.userProfileInput.accommodation}).toPromise().then(() => {
+            this.userProfileDoc.set(Object.assign({}, this.userProfileInput)).then(() => {
+              this.isLoading = false;
+              this.isSuccess = true;
+              setTimeout(() => {
+                window.location.href = 'https://www.facebook.com/ieee.tsyp';
+              }, 5000);
+            });
+          }).catch(() => {
+            this.isLoading = false;
+            this.isError = true;
+          });
+        })
+      ).subscribe();
     }
-
-    const callable = this.fns.httpsCallable('setAccommodation');
-    callable({accommodation: this.userProfileInput.accommodation}).toPromise().then((result: any) => {
-      console.log(result);
-    }).catch((error: any) => {
-      console.log(error);
-    });
-
-    this.userProfileDoc.set(Object.assign({}, this.userProfileInput));
-
-    this.isSuccess = true;
   }
 
   uploadFile(event) {
