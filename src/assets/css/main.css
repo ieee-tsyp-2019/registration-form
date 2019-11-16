@@ -3301,7 +3301,6 @@ html.no-csstransitions .home-content__main {
 /* form loader
  * ----------------------------------------------- */
 .submit-loader {
-  display: none;
   position: relative;
   left: 0;
   top: 1.8rem;
@@ -3311,7 +3310,6 @@ html.no-csstransitions .home-content__main {
 }
 
 .submit-loader .text-loader {
-  display: none;
   font-family: "montserrat-regular", sans-serif;
   font-size: 1.3rem;
   font-weight: bold;
