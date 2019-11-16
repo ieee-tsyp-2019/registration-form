@@ -20,7 +20,6 @@ export class UserProfileComponent {
   private userProfileDoc: AngularFirestoreDocument<UserProfile>;
   private userProfile: Observable<UserProfile | undefined>;
   private userProfileSubscription;
-  private uploadProgress;
   private diarLemdinaDoc;
   private diarLemdina;
   private edenDoc;
