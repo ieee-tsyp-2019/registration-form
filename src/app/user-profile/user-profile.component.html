@@ -300,6 +300,11 @@
         Sorry, no more places left.
       </div>
 
+      <div *ngIf="isError && !isLoading"
+           class="message-warning">
+        Something bad happened. Please try again later.
+      </div>
+
     </div> <!-- end contact-primary -->
 
     <div class="contact-secondary">
