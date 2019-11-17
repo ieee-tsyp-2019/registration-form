@@ -13,6 +13,7 @@ import {UserProfileComponent} from './user-profile/user-profile.component';
 import {AngularFireAuthGuard} from '@angular/fire/auth-guard';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireFunctionsModule} from '@angular/fire/functions';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {AngularFireFunctionsModule} from '@angular/fire/functions';
     FormsModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
-    AngularFireFunctionsModule
+    AngularFireFunctionsModule,
+    BrowserAnimationsModule
   ],
   providers: [AngularFireAuthGuard],
   bootstrap: [AppComponent]
