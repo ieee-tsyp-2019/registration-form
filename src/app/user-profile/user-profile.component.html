@@ -176,7 +176,8 @@
           </div>
 
           <div
-            *ngIf="userProfileInput.studentBranch == 'Other educational institution'"
+            *ngIf="userProfileInput.studentBranch == 'Other educational institution'
+                      && userProfileInput.type == 'Student'"
             class="form-field">
             <label for="educationalInstitution">
               Educational institution *
