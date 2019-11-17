@@ -217,47 +217,6 @@
           </div>
 
           <div class="form-field">
-            <label *ngIf="cin.valid || cin.untouched"
-                   for="cin">
-              National identity card number *
-            </label>
-            <label *ngIf="cin.invalid && cin.touched"
-                   class="label-warning"
-                   for="cin">
-              National identity card number is invalid!
-            </label>
-            <input [(ngModel)]="userProfileInput.cin"
-                   #cin="ngModel"
-                   class="full-width form-control"
-                   ngModel
-                   pattern="[0-9]{8}"
-                   required
-                   id="cin"
-                   name="cin"
-                   type="text">
-          </div>
-
-          <div class="form-field">
-            <label *ngIf="releaseDate.valid || releaseDate.untouched"
-                   for="release-date">
-              Release date *
-            </label>
-            <label *ngIf="releaseDate.invalid && releaseDate.touched"
-                   class="label-warning"
-                   for="release-date">
-              Release date is required!
-            </label>
-            <input [(ngModel)]="userProfileInput.releaseDate"
-                   #releaseDate="ngModel"
-                   class="full-width unstyled-date form-control"
-                   ngModel
-                   required
-                   id="release-date"
-                   name="release-date"
-                   type="date">
-          </div>
-
-          <div class="form-field">
             <label *ngIf="phoneNumber.valid || phoneNumber.untouched"
                    for="phone-number">
               Phone number *
