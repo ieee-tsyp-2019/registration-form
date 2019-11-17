@@ -14,7 +14,6 @@ import {AngularFireAuthGuard} from '@angular/fire/auth-guard';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireFunctionsModule} from '@angular/fire/functions';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {BsDropdownModule} from 'ngx-bootstrap';
 import {NgxIntlTelInputModule} from 'ngx-intl-tel-input';
 
 @NgModule({
@@ -36,7 +35,6 @@ import {NgxIntlTelInputModule} from 'ngx-intl-tel-input';
     AngularFireStorageModule,
     AngularFireFunctionsModule,
     BrowserAnimationsModule,
-    BsDropdownModule.forRoot(),
     NgxIntlTelInputModule,
   ],
   providers: [AngularFireAuthGuard],
