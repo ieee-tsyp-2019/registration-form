@@ -12,7 +12,8 @@ export class UserProfile {
     public studentBranch: string,
     public accommodation: string,
     public organization: string,
-    public position: string
+    public position: string,
+    public educationalInstitution: string
   ) {
   }
 
