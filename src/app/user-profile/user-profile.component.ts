@@ -47,6 +47,8 @@ export class UserProfileComponent {
       '',
       '',
       '',
+      '',
+      '',
       '');
     this.afAuth.auth.onAuthStateChanged(user => {
       if (user) {
@@ -63,6 +65,8 @@ export class UserProfileComponent {
               '',
               '',
               user.phoneNumber ? user.phoneNumber : '',
+              '',
+              '',
               '',
               '',
               '');
