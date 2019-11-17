@@ -120,18 +120,12 @@ export class UserProfileComponent {
       const task = this.storage.upload(filePath, this.paymentReceiptFile);
       task.snapshotChanges().pipe(
         finalize(() => {
-          const callable = this.fns.httpsCallable('setAccommodation');
-          callable({accommodation: this.userProfileInput.accommodation}).toPromise().then(() => {
-            this.userProfileDoc.set(Object.assign({}, this.userProfileInput)).then(() => {
-              this.isLoading = false;
-              this.isSuccess = true;
-              setTimeout(() => {
-                window.location.href = 'https://www.facebook.com/ieee.tsyp';
-              }, 5000);
-            });
-          }).catch(() => {
+          this.userProfileDoc.set(Object.assign({}, this.userProfileInput)).then(() => {
             this.isLoading = false;
-            this.isError = true;
+            this.isSuccess = true;
+            setTimeout(() => {
+              window.location.href = 'https://www.facebook.com/ieee.tsyp';
+            }, 5000);
           });
         })
       ).subscribe();
