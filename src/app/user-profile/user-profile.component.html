@@ -248,27 +248,6 @@
           </div>
 
           <div class="form-field">
-            <label *ngIf="paymentReceipt.valid || paymentReceipt.untouched"
-                   for="payment-receipt">
-              Payment receipt *
-            </label>
-            <label *ngIf="paymentReceipt.invalid && paymentReceipt.touched"
-                   class="label-warning"
-                   for="payment-receipt">
-              Payment receipt is required!
-            </label>
-            <input (change)="uploadFile($event)"
-                   accept=".png,.jpg"
-                   class="full-width"
-                   id="payment-receipt"
-                   #paymentReceipt="ngModel"
-                   name="payment-receipt form-control"
-                   ngModel
-                   required
-                   type="file">
-          </div>
-
-          <div class="form-field">
             <button type="submit"
                     class="full-width btn--primary">Submit
             </button>
