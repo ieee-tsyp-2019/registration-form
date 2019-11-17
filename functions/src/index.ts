@@ -100,9 +100,9 @@ export const setAccommodation = functions.https.onCall(async (data: any, context
 
       let countMaximum: number;
       if (accommodation === 'Diar Lemdina') {
-        countMaximum = 5;
+        countMaximum = 1;
       } else {
-        countMaximum = 2;
+        countMaximum = 1;
       }
 
       if (count >= countMaximum) {
