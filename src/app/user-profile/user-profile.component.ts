@@ -6,6 +6,7 @@ import {UserProfile} from '../user-profile';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {AngularFireFunctions} from '@angular/fire/functions';
 import {FormControl, NgModel} from '@angular/forms';
+import {CountryISO} from 'ngx-intl-tel-input';
 
 export interface Accommodation {
   count: number;
@@ -33,6 +34,7 @@ export class UserProfileComponent {
   private diarLemdinaLimit = 1;
   private edenLimit = 1;
   @ViewChild('registrationForm', {static: false}) registrationForm;
+  private preferredCountries: CountryISO[] = [CountryISO.Tunisia];
 
   constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private storage: AngularFireStorage,
               private fns: AngularFireFunctions, private el: ElementRef) {
