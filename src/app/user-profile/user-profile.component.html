@@ -269,30 +269,6 @@
           </div>
 
           <div class="form-field">
-            <label *ngIf="accommodation.valid || accommodation.untouched"
-                   for="accommodation">
-              Accommodation *
-            </label>
-            <label *ngIf="accommodation.invalid && accommodation.touched"
-                   class="label-warning"
-                   for="accommodation">
-              Accommodation is required!
-            </label>
-            <select [(ngModel)]="userProfileInput.accommodation"
-                    #accommodation="ngModel"
-                    class="full-width form-control"
-                    ngModel
-                    required
-                    id="accommodation"
-                    name="accommodation">
-              <option *ngIf="(diarLemdina | async)?.count < diarLemdinaLimit">
-                Diar Lemdina
-              </option>
-              <option *ngIf="(eden | async)?.count < edenLimit">Eden</option>
-            </select>
-          </div>
-
-          <div class="form-field">
             <button type="submit"
                     class="full-width btn--primary">Submit
             </button>
