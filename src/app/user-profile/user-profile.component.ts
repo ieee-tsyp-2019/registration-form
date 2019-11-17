@@ -6,7 +6,6 @@ import {UserProfile} from '../user-profile';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {AngularFireFunctions} from '@angular/fire/functions';
 import {FormControl, NgModel} from '@angular/forms';
-import {finalize} from 'rxjs/operators';
 
 export interface Accommodation {
   count: number;
@@ -116,19 +115,13 @@ export class UserProfileComponent {
     } else {
       this.isLoading = true;
 
-      const filePath = 'users/' + this.userProfileInput.email + '/payment-receipt';
-      const task = this.storage.upload(filePath, this.paymentReceiptFile);
-      task.snapshotChanges().pipe(
-        finalize(() => {
-          this.userProfileDoc.set(Object.assign({}, this.userProfileInput)).then(() => {
-            this.isLoading = false;
-            this.isSuccess = true;
-            setTimeout(() => {
-              window.location.href = 'https://www.facebook.com/ieee.tsyp';
-            }, 5000);
-          });
-        })
-      ).subscribe();
+      this.userProfileDoc.set(Object.assign({}, this.userProfileInput)).then(() => {
+        this.isLoading = false;
+        this.isSuccess = true;
+        setTimeout(() => {
+          window.location.href = 'https://www.facebook.com/ieee.tsyp';
+        }, 5000);
+      });
     }
   }
 
