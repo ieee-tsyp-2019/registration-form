@@ -141,6 +141,7 @@
                     ngModel
                     required
                     name="student-branch">
+              <option>Other educational institution</option>
               <option>ENIT</option>
               <option>ENIS</option>
               <option>ENSI</option>
@@ -172,6 +173,28 @@
               <option>IIT</option>
               <option>Polytechnic Sfax</option>
             </select>
+          </div>
+
+          <div
+            *ngIf="userProfileInput.studentBranch == 'Other educational institution'"
+            class="form-field">
+            <label for="educationalInstitution">
+              Educational institution *
+            </label>
+            <label
+              *ngIf="educationalInstitution.invalid && educationalInstitution.touched"
+              class="label-warning"
+              for="educationalInstitution">
+              Educational institution is required!
+            </label>
+            <input #educationalInstitution="ngModel"
+                   [(ngModel)]="userProfileInput.educationalInstitution"
+                   class="full-width form-control"
+                   id="educationalInstitution"
+                   name="educationalInstitution"
+                   ngModel
+                   required
+                   type="text">
           </div>
 
           <div class="form-field">
