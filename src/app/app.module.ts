@@ -13,6 +13,7 @@ import {UserProfileComponent} from './user-profile/user-profile.component';
 import {AngularFireAuthGuard} from '@angular/fire/auth-guard';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireFunctionsModule} from '@angular/fire/functions';
+import {InternationalPhoneNumberModule} from 'ngx-international-phone-number';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {AngularFireFunctionsModule} from '@angular/fire/functions';
     FormsModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
-    AngularFireFunctionsModule
+    AngularFireFunctionsModule,
+    InternationalPhoneNumberModule,
   ],
   providers: [AngularFireAuthGuard],
   bootstrap: [AppComponent]
