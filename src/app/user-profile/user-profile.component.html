@@ -227,15 +227,14 @@
                    for="phone-number">
               Phone number is invalid!
             </label>
-            <input [(ngModel)]="userProfileInput.phoneNumber"
-                   #phoneNumber="ngModel"
-                   class="full-width form-control"
-                   ngModel
-                   pattern="\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|4[987654310]|3[9643210]|2[70]|7|1)\d{1,14}$"
-                   id="phone-number"
-                   name="phone-number"
-                   required
-                   type="tel">
+            <ngx-intl-tel-input #phoneNumber="ngModel"
+                                [(ngModel)]="userProfileInput.phoneNumber"
+                                [cssClass]="'full-width form-control'"
+                                [preferredCountries]="preferredCountries"
+                                id="phone-number"
+                                name="phone-number"
+                                ngModel
+                                required></ngx-intl-tel-input>
           </div>
 
           <div class="form-field">
