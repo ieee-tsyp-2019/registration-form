@@ -75,7 +75,53 @@
                     required="">
               <option>Student</option>
               <option>Young professional</option>
+              <option>Member</option>
+              <option>Senior member</option>
             </select>
+          </div>
+
+          <div *ngIf="userProfileInput.type == 'Member'
+                        || userProfileInput.type == 'Senior member'
+                        || userProfileInput.type == 'Young professional'"
+               class="form-field">
+            <label for="organization">
+              Organization *
+            </label>
+            <label *ngIf="organization.invalid && organization.touched"
+                   class="label-warning"
+                   for="organization">
+              Organization is required!
+            </label>
+            <input #organization="ngModel"
+                   [(ngModel)]="userProfileInput.organization"
+                   class="full-width form-control"
+                   id="organization"
+                   name="organization"
+                   ngModel
+                   required
+                   type="text">
+          </div>
+
+          <div *ngIf="userProfileInput.type == 'Member'
+                        || userProfileInput.type == 'Senior member'
+                        || userProfileInput.type == 'Young professional'"
+               class="form-field">
+            <label for="position">
+              Position *
+            </label>
+            <label *ngIf="position.invalid && position.touched"
+                   class="label-warning"
+                   for="position">
+              Position is required!
+            </label>
+            <input #position="ngModel"
+                   [(ngModel)]="userProfileInput.position"
+                   class="full-width form-control"
+                   id="position"
+                   name="position"
+                   ngModel
+                   required
+                   type="text">
           </div>
 
           <div *ngIf="userProfileInput.type == 'Student'" class="form-field">
@@ -95,6 +141,7 @@
                     ngModel
                     required
                     name="student-branch">
+              <option>Other educational institution</option>
               <option>ENIT</option>
               <option>ENIS</option>
               <option>ENSI</option>
@@ -128,6 +175,28 @@
             </select>
           </div>
 
+          <div
+            *ngIf="userProfileInput.studentBranch == 'Other educational institution'"
+            class="form-field">
+            <label for="educationalInstitution">
+              Educational institution *
+            </label>
+            <label
+              *ngIf="educationalInstitution.invalid && educationalInstitution.touched"
+              class="label-warning"
+              for="educationalInstitution">
+              Educational institution is required!
+            </label>
+            <input #educationalInstitution="ngModel"
+                   [(ngModel)]="userProfileInput.educationalInstitution"
+                   class="full-width form-control"
+                   id="educationalInstitution"
+                   name="educationalInstitution"
+                   ngModel
+                   required
+                   type="text">
+          </div>
+
           <div class="form-field">
             <label *ngIf="memberNumber.valid || memberNumber.untouched"
                    for="member-number">
@@ -145,47 +214,6 @@
                    pattern="[0-9]{8}"
                    required
                    type="text">
-          </div>
-
-          <div class="form-field">
-            <label *ngIf="cin.valid || cin.untouched"
-                   for="cin">
-              National identity card number *
-            </label>
-            <label *ngIf="cin.invalid && cin.touched"
-                   class="label-warning"
-                   for="cin">
-              National identity card number is invalid!
-            </label>
-            <input [(ngModel)]="userProfileInput.cin"
-                   #cin="ngModel"
-                   class="full-width form-control"
-                   ngModel
-                   pattern="[0-9]{8}"
-                   required
-                   id="cin"
-                   name="cin"
-                   type="text">
-          </div>
-
-          <div class="form-field">
-            <label *ngIf="releaseDate.valid || releaseDate.untouched"
-                   for="release-date">
-              Release date *
-            </label>
-            <label *ngIf="releaseDate.invalid && releaseDate.touched"
-                   class="label-warning"
-                   for="release-date">
-              Release date is required!
-            </label>
-            <input [(ngModel)]="userProfileInput.releaseDate"
-                   #releaseDate="ngModel"
-                   class="full-width unstyled-date form-control"
-                   ngModel
-                   required
-                   id="release-date"
-                   name="release-date"
-                   type="date">
           </div>
 
           <div class="form-field">
