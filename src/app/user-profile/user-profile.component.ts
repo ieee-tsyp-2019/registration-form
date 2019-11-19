@@ -48,7 +48,10 @@ export class UserProfileComponent {
       '',
       '',
       '',
-      '');
+      '',
+      '',
+      ''
+  );
     this.afAuth.auth.onAuthStateChanged(user => {
       if (user) {
         this.userProfileDoc = afs.doc<UserProfile>('users/' + user.uid);
@@ -61,12 +64,15 @@ export class UserProfileComponent {
               user.email ? user.email : '',
               '',
               user.displayName ? user.displayName : '',
-              '',
-              '',
               user.phoneNumber ? user.phoneNumber : '',
               '',
               '',
-              '');
+              '',
+              '',
+              '',
+              '',
+              ''
+          );
           } else {
             this.isAlreadyRegistred = true;
           }

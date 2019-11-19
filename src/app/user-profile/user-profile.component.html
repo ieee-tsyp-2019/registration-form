@@ -2,17 +2,26 @@
 ================================================== -->
 <section class="s-contact" id="contact">
 
-  <div class="overlay"></div>
+  <div class="overlay">
+    <div>
+      <img src="./../../assets/images/ieee_tunisia_logo.png" style="height: 40px; weight: 80px;  float: left;left:0; margin-top: 10px; margin-left: 10px;">
+      <img src="./../../assets/images/Logo-SBb.png" style="height: 50px; weight: 80px;  float: right; right: 0; margin-top: 10px;margin-right: 10px">
+      <img src="./../../assets/images/Region8.png" style="height: 50px; weight: 80px;  float: left;left:0; margin-top: 10px; margin-left: 10px">
+      <img src="./../../assets/images/YPLogo.png" style="height: 40px; weight: 80px;  float: right; right: 0; margin-top: 10px; margin-right: 10px">
+
+    </div>
+  </div>
   <div class="contact__line"></div>
 
   <div class="row section-header">
     <div class="col-full">
+      <!--      <h3 class="subhead">-->
+      <!--        7<sup>th</sup>-->
+      <!--        IEEE Tunisian Students and Young Professionals Congress (TSYP)-->
+      <!--      </h3>-->
+      <img src="./../../assets/images/logo final blanc_Plan de travail.png" style="height: 200px; weight: 100px; margin-bottom: 20px">
       <h3 class="subhead">
-        7<sup>th</sup>
-        IEEE Tunisian Students and Young Professionals Congress (TSYP)
-      </h3>
-      <h3 class="subhead">
-        <mark>December 15<sup>th</sup> - 17<sup>th</sup> 2019</mark>
+      <mark>December 15<sup>th</sup> - 17<sup>th</sup> 2019</mark>
       </h3>
       <h1 class="display-2 display-2--light">Pre-registration form</h1>
     </div>
@@ -61,8 +70,7 @@
           </div>
 
           <div class="form-field">
-            <label *ngIf="type.valid || type.untouched" for="type">Student or
-              YP? *</label>
+            <label *ngIf="type.valid || type.untouched" for="type">IEEE Grade *</label>
             <label *ngIf="type.invalid && type.touched"
                    class="label-warning"
                    for="type">This field is required!</label>
@@ -73,16 +81,16 @@
                     class="full-width form-control"
                     ngModel
                     required="">
-              <option>Student</option>
-              <option>Young professional</option>
-              <option>Member</option>
-              <option>Senior member</option>
+              <option>IEEE Undergraduate Student</option>
+              <option>IEEE Graduate Student (master / PhD students)</option> <!--Young professional-->
+              <option>IEEE Professional Member</option> <!--Member-->
+              <option>IEEE Senior Member</option> <!--Senior member-->
             </select>
           </div>
 
-          <div *ngIf="userProfileInput.type == 'Member'
-                        || userProfileInput.type == 'Senior member'
-                        || userProfileInput.type == 'Young professional'"
+          <div *ngIf="userProfileInput.type == 'IEEE Professional Member'
+                        || userProfileInput.type == 'IEEE Senior Member'
+                        || userProfileInput.type == 'IEEE Graduate Student (master / PhD students)'"
                class="form-field">
             <label for="organization">
               Organization *
@@ -102,9 +110,9 @@
                    type="text">
           </div>
 
-          <div *ngIf="userProfileInput.type == 'Member'
-                        || userProfileInput.type == 'Senior member'
-                        || userProfileInput.type == 'Young professional'"
+          <div *ngIf="userProfileInput.type == 'IEEE Professional Member'
+                        || userProfileInput.type == 'IEEE Senior Member'
+                        || userProfileInput.type == 'IEEE Graduate Student (master / PhD students)'"
                class="form-field">
             <label for="position">
               Position *
@@ -123,8 +131,32 @@
                    required
                    type="text">
           </div>
+          <div *ngIf="userProfileInput.type == 'IEEE Professional Member'
+                        || userProfileInput.type == 'IEEE Senior Member'
+                        || userProfileInput.type == 'IEEE Graduate Student (master / PhD students)'" class="form-field">
+            <label *ngIf="YP.valid || YP.untouched"
+                   for="YP">
+              YP membership ? *
+            </label>
+            <label *ngIf="YP.invalid && YP.touched"
+                   class="label-warning"
+                   for="YP">
+              Answer is required!
+            </label>
+            <select [(ngModel)]="userProfileInput.YP"
+                    #YP="ngModel"
+                    class="full-width form-control"
+                    id="YP"
+                    ngModel
+                    required
+                    name="YP">
+              <option>Oui</option>
+              <option>Non</option>
+            </select>
+          </div>
 
-          <div *ngIf="userProfileInput.type == 'Student'" class="form-field">
+
+          <div *ngIf="userProfileInput.type == 'IEEE Undergraduate Student'" class="form-field">
             <label *ngIf="studentBranch.valid || studentBranch.untouched"
                    for="student-branch">
               Student branch *
@@ -177,7 +209,7 @@
 
           <div
             *ngIf="userProfileInput.studentBranch == 'Other educational institution'
-                      && userProfileInput.type == 'Student'"
+                      && userProfileInput.type == 'IEEE Undergraduate Student'"
             class="form-field">
             <label for="educationalInstitution">
               Educational institution *
@@ -235,6 +267,26 @@
                                 name="phone-number"
                                 ngModel
                                 required></ngx-intl-tel-input>
+          </div>
+
+          <div class="form-field">
+            <label *ngIf="gender.valid || gender.untouched"
+                   for="gender">
+              Gender *
+            </label>
+            <label *ngIf="gender.invalid && gender.touched"
+                   class="label-warning"
+                   for="gender">Gender is required !</label>
+            <select [(ngModel)]="userProfileInput.gender"
+                    #gender="ngModel"
+                    class="full-width form-control"
+                    id="gender"
+                    ngModel
+                    required
+                    name="gender">
+              <option>Male</option>
+              <option>Female</option>
+            </select>
           </div>
 
           <div class="form-field">

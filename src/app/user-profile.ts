@@ -10,7 +10,9 @@ export class UserProfile {
     public studentBranch: string,
     public organization: string,
     public position: string,
-    public educationalInstitution: string
+    public educationalInstitution: string,
+    public YP: string,
+    public gender: string
   ) {
   }
 
