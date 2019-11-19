@@ -137,6 +137,7 @@
             <label *ngIf="YP.valid || YP.untouched"
                    for="YP">
               YP membership ? *
+
             </label>
             <label *ngIf="YP.invalid && YP.touched"
                    class="label-warning"
@@ -150,11 +151,16 @@
                     ngModel
                     required
                     name="YP">
-              <option>Oui</option>
-              <option>Non</option>
+              <option>Yes</option>
+              <option>No</option>
             </select>
+
           </div>
 
+          <div *ngIf="userProfileInput.type == 'IEEE Professional Member'
+                        || userProfileInput.type == 'IEEE Senior Member'
+                        || userProfileInput.type == 'IEEE Graduate Student (master / PhD students)'">
+            <p style="font-size: 12px">(you had received your first professional degree within the last 15 years)</p></div>
 
           <div *ngIf="userProfileInput.type == 'IEEE Undergraduate Student'" class="form-field">
             <label *ngIf="studentBranch.valid || studentBranch.untouched"
