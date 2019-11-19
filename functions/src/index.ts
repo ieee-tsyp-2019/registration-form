@@ -7,6 +7,7 @@
 
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
+const nodemailer = require('nodemailer');
 
 admin.initializeApp();
 const db = admin.firestore();
@@ -121,5 +122,72 @@ export const setAccommodation = functions.https.onCall(async (data: any, context
     return 'Successfully added to ' + accommodation;
   }).catch((error: any) => {
     return error;
+  });
+});
+
+const gmailEmail = functions.config().gmail.email;
+const gmailPassword = functions.config().gmail.password;
+const mailTransport = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: gmailEmail,
+    pass: gmailPassword,
+  },
+});
+
+exports.sendMail = functions.https.onCall(async (data: any, context: any) => {
+  const mailOptions = {
+    to: context.auth.token.email,
+    subject: 'TSYP pre-registration confirmation',
+    html: `<html>
+<head>
+\t<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+\t<title>TSYP pre-registration confirmation</title>
+\t<link id="avast_os_ext_custom_font" href="chrome-extension://mbckjcfnjmoiinpgddefodcighgikkgn/common/ui/fonts/fonts.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+\t<p>Dear ${context.auth.token.name},</p>
+\t<p>&nbsp;</p>
+\t<p>CONGRATULATIONS!</p>
+\t<p>You have completed <strong>phase one </strong>of the registration to the IEEE TSYP 2019 CONGRESS! 
+\t<br>Stay tuned in order to finalize and confirm your registration through the D17 Application (an application launched by Tunisian Post Office). 
+\t<br>We will announce the beginning of <strong>phase two</strong> on our website and social media soon. 
+\tMake sure to book your seat as soon as you can to an amazing and unique adventure!
+\t</p>
+\t<p>&nbsp;</p>
+\t<p>With love,</p>
+\t<p>TSYP Organizing Committee.</p>
+\t<p>&nbsp;</p>
+\t</div>
+
+
+\t<table width="388" cellspacing="0" cellpadding="0" border="0"> 
+\t\t<tr> 
+\t\t\t<td width="200" style="vertical-align:top;padding-right:20px"><a style="display:inline-block" href="https://tsyp.ieee.tn"><img style="border:none" width="200" src="https://s1g.s3.amazonaws.com/f462efbf99e2463eeb2701facd472c2f.png"></a></td>
+\t\t\t<td style="border-left:solid #61605b 2px" width="22"></td> 
+\t\t\t<td style="vertical-align: top; text-align:center;color:#000000;font-size:12px;font-family:'trebuchet ms';; text-align:center"> <span><b><span style="color:#997d18;font-size:15px;font-family:'trebuchet ms'">IEEE TUNISIAN STUDENTS AND YOUNG PROFESSIONALS CONGRESS</span></b><br> </span> <br> <table cellspacing="0" cellpadding="0" border="0" style="margin:0 10px 10px 0"><tr>
+\t\t\t<td style="padding-right:10px;padding-left:30px;"><img width="40" height="40" src="https://s1g.s3.amazonaws.com/554c257930b241300f69b8999809b796.png" alt="email" style="border:none"></td>
+\t\t\t<td><span style="font:12px 'trebuchet ms'"><a href="mailto:tsyp@ieee.org" style="color:#000000;text-decoration:none">tsyp@ieee.org</a></span></td>
+\t\t</tr>
+\t\t<tr>
+\t\t\t<td style="padding-right:5px; padding-left:10px;"><a href="https://facebook.com/ieee.tsyp/" style="display: inline-block"><img width="40" height="40" src="https://s1g.s3.amazonaws.com/aa07c6113198c90008b3d1ecc7b95317.png" alt="Facebook" style="border:none"></a></td>
+\t\t\t<td style="padding-right:5px"><a href="https://instagram.com/ieee_tsyp2k19/" style="display: inline-block"><img width="40" height="40" src="https://s1g.s3.amazonaws.com/67da714565d9f77774d241b2b51bf1ca.png" alt="Instagram" style="border:none"></a></td>
+\t\t\t<td style="padding-right:5px"><a href="https://tsyp.ieee.tn" style="display: inline-block"><img width="40" height="23" src="./web-icon.jpg" alt="web" style="border:none"></a></td>
+\t\t</tr>
+\t</table> Medina Convention Center<br>Yasmine Hammamet<br>Tunisia<br><br> <table cellpadding="0" cellpadding="0" border="0">
+
+
+ </body>
+ </html>`
+  };
+
+  return mailTransport.sendMail(mailOptions, (error: any) => {
+    if (error) {
+      console.error(error.toString());
+      return error.toString();
+    }
+
+    console.log('Success');
+    return 200;
   });
 });
