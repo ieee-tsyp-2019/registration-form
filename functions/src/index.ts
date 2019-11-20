@@ -125,14 +125,25 @@ export const setAccommodation = functions.https.onCall(async (data: any, context
   });
 });
 
-const gmailEmail = functions.config().gmail.email;
-const gmailPassword = functions.config().gmail.password;
-const mailTransport = nodemailer.createTransport({
-  service: 'gmail',
+// const gmailEmail = functions.config().gmail.email;
+// const gmailPassword = functions.config().gmail.password;
+// const mailTransport = nodemailer.createTransport({
+//   service: 'gmail',
+//   auth: {
+//     user: gmailEmail,
+//     pass: gmailPassword,
+//   },
+// });
+    const smtpEmail = functions.config().smtp.email;
+    const smtpPassword = functions.config().smtp.password;
+var smtpTransport = nodemailer.createTransport({
+  host: 'mail.ieee.tn',
+  port: 26,
+  secure: false,
   auth: {
-    user: gmailEmail,
-    pass: gmailPassword,
-  },
+    user: smtpEmail,
+    pass: smtpPassword,
+  }
 });
 
 exports.sendMail = functions.https.onCall(async (data: any, context: any) => {
@@ -178,7 +189,7 @@ exports.sendMail = functions.https.onCall(async (data: any, context: any) => {
  </html>`
   };
 
-  return mailTransport.sendMail(mailOptions, (error: any) => {
+  return smtpTransport.sendMail(mailOptions, (error: any) => {
     if (error) {
       console.error(error.toString());
       return error.toString();
