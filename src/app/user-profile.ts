@@ -13,7 +13,8 @@ export class UserProfile {
     public position: string,
     public educationalInstitution: string,
     public YP: string,
-    public gender: string
+    public gender: string,
+    public paymentCode: string
   ) {
   }
 

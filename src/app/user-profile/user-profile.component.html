@@ -303,7 +303,23 @@
                    name="birth-date"
                    type="date">
           </div>
-
+          <div class="form-field">
+            <label *ngIf="paymentCode.valid || paymentCode.untouched"
+                   for="paymentCode">
+              Payment Code *
+            </label>
+            <label *ngIf="paymentCode.invalid && paymentCode.touched"
+                   class="label-warning"
+                   for="paymentCode">Payment Code is invalid!</label>
+            <input [(ngModel)]="userProfileInput.paymentCode"
+                   #paymentCode="ngModel"
+                   id="paymentCode"
+                   name="paymentCode"
+                   class="full-width form-control"
+                   ngModel
+                   required
+                   type="text">
+          </div>
           <div class="form-field">
             <label *ngIf="accommodation.valid || accommodation.untouched"
                    for="accommodation">
@@ -327,7 +343,12 @@
               <option *ngIf="(eden | async)?.count < edenLimit">Eden</option>
             </select>
           </div>
-
+          <p style="font-size: 12px; color: red">PS: Hotel will be assigned according to the availability of the rooms at the registration time.</p>
+          <div class="form-field">
+            <input type="checkbox"  name="Event Terms and Conditions" required> I have read and are in agreement with IEEE's <a href="https://www.ieee.org/conferences/event-terms-and-conditions.html">Event Terms and Conditions</a><br>
+            <input type="checkbox"   name="Privacy Policy" required> I have read and are in agreement with IEEE’s <a href="https://www.ieee.org/security-privacy.html">Privacy Policy</a><br>
+            <input type="checkbox"   name="Code of Ethics" required > I have read and are in agreement with IEEE’s <a href="https://www.ieee.org/about/corporate/governance/p7-8.html">Code of Ethics</a><br>
+          </div>
           <div class="form-field">
             <button type="submit"
                     class="full-width btn--primary">Submit

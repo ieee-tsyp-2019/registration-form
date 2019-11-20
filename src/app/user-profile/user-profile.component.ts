@@ -31,14 +31,16 @@ export class UserProfileComponent {
   private isLoading = false;
   private isError = false;
   private paymentReceiptFile = undefined;
-  private diarLemdinaLimit = 1;
-  private edenLimit = 1;
+  private diarLemdinaLimit = 680;
+  private edenLimit = 200;
   @ViewChild('registrationForm', {static: false}) registrationForm;
   private preferredCountries: CountryISO[] = [CountryISO.Tunisia];
 
   constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private storage: AngularFireStorage,
               private fns: AngularFireFunctions, private el: ElementRef) {
     this.userProfileInput = new UserProfile(
+      '',
+      '',
       '',
       '',
       '',
@@ -65,6 +67,8 @@ export class UserProfileComponent {
               '',
               user.displayName ? user.displayName : '',
               user.phoneNumber ? user.phoneNumber : '',
+              '',
+              '',
               '',
               '',
               '',

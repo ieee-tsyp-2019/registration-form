@@ -101,9 +101,9 @@ export const setAccommodation = functions.https.onCall(async (data: any, context
 
       let countMaximum: number;
       if (accommodation === 'Diar Lemdina') {
-        countMaximum = 1;
+        countMaximum = 680;
       } else {
-        countMaximum = 1;
+        countMaximum = 200;
       }
 
       if (count >= countMaximum) {
@@ -138,21 +138,18 @@ const mailTransport = nodemailer.createTransport({
 exports.sendMail = functions.https.onCall(async (data: any, context: any) => {
   const mailOptions = {
     to: context.auth.token.email,
-    subject: 'TSYP pre-registration confirmation',
+    subject: 'TSYP egistration confirmation',
     html: `<html>
 <head>
 \t<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-\t<title>TSYP pre-registration confirmation</title>
+\t<title>TSYP registration confirmation</title>
 \t<link id="avast_os_ext_custom_font" href="chrome-extension://mbckjcfnjmoiinpgddefodcighgikkgn/common/ui/fonts/fonts.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 \t<p>Dear ${context.auth.token.name},</p>
 \t<p>&nbsp;</p>
 \t<p>CONGRATULATIONS!</p>
-\t<p>You have completed <strong>phase one </strong>of the registration to the IEEE TSYP 2019 CONGRESS! 
-\t<br>Stay tuned in order to finalize and confirm your registration through the D17 Application (an application launched by Tunisian Post Office). 
-\t<br>We will announce the beginning of <strong>phase two</strong> on our website and social media soon. 
-\tMake sure to book your seat as soon as you can to an amazing and unique adventure!
+\t<p>you have been successfully registered to the IEEE TSYP 2019 CONGRESS! 
 \t</p>
 \t<p>&nbsp;</p>
 \t<p>With love,</p>
@@ -172,7 +169,7 @@ exports.sendMail = functions.https.onCall(async (data: any, context: any) => {
 \t\t<tr>
 \t\t\t<td style="padding-right:5px; padding-left:10px;"><a href="https://facebook.com/ieee.tsyp/" style="display: inline-block"><img width="40" height="40" src="https://s1g.s3.amazonaws.com/aa07c6113198c90008b3d1ecc7b95317.png" alt="Facebook" style="border:none"></a></td>
 \t\t\t<td style="padding-right:5px"><a href="https://instagram.com/ieee_tsyp2k19/" style="display: inline-block"><img width="40" height="40" src="https://s1g.s3.amazonaws.com/67da714565d9f77774d241b2b51bf1ca.png" alt="Instagram" style="border:none"></a></td>
-\t\t\t<td style="padding-right:5px"><a href="https://tsyp.ieee.tn" style="display: inline-block"><img width="40" height="23" src="./web-icon.jpg" alt="web" style="border:none"></a></td>
+\t\t\t<td style="padding-right:5px"><a href="https://tsyp.ieee.tn" style="display: inline-block"><img width="40" height="23" src="https://i.ibb.co/Yf4dNMb/web-icon.png" alt="web" style="border:none"></a></td>
 \t\t</tr>
 \t</table> Medina Convention Center<br>Yasmine Hammamet<br>Tunisia<br><br> <table cellpadding="0" cellpadding="0" border="0">
 
