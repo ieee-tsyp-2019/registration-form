@@ -21,9 +21,9 @@
       <!--      </h3>-->
       <img src="./../../assets/images/logo final blanc_Plan de travail.png" style="height: 200px; weight: 100px; margin-bottom: 20px">
       <h3 class="subhead">
-      <mark>December 15<sup>th</sup> - 17<sup>th</sup> 2019</mark>
+        <mark>December 15<sup>th</sup> - 17<sup>th</sup> 2019</mark>
       </h3>
-      <h1 class="display-2 display-2--light">Pre-registration form</h1>
+      <h1 class="display-2 display-2--light">Registration form</h1>
     </div>
   </div>
 
@@ -302,6 +302,30 @@
                    id="birth-date"
                    name="birth-date"
                    type="date">
+          </div>
+
+          <div class="form-field">
+            <label *ngIf="accommodation.valid || accommodation.untouched"
+                   for="accommodation">
+              Accommodation *
+            </label>
+            <label *ngIf="accommodation.invalid && accommodation.touched"
+                   class="label-warning"
+                   for="accommodation">
+              Accommodation is required!
+            </label>
+            <select #accommodation="ngModel"
+                    [(ngModel)]="userProfileInput.accommodation"
+                    class="full-width form-control"
+                    id="accommodation"
+                    name="accommodation"
+                    ngModel
+                    required>
+              <option *ngIf="(diarLemdina | async)?.count < diarLemdinaLimit">
+                Diar Lemdina
+              </option>
+              <option *ngIf="(eden | async)?.count < edenLimit">Eden</option>
+            </select>
           </div>
 
           <div class="form-field">
