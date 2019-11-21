@@ -35,6 +35,7 @@ export class UserProfileComponent {
   private edenLimit = 1;
   @ViewChild('registrationForm', {static: false}) registrationForm;
   private preferredCountries: CountryISO[] = [CountryISO.Tunisia];
+  private accommodations: string[] = [];
 
   constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private storage: AngularFireStorage,
               private fns: AngularFireFunctions, private el: ElementRef) {
