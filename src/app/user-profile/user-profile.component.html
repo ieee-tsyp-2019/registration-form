@@ -376,8 +376,7 @@
         Facebook page in in 5 seconds...
       </div>
 
-      <div *ngIf="!((diarLemdina | async)?.count < diarLemdinaLimit
-                      || (eden | async)?.count < edenLimit)
+      <div *ngIf="!(accommodations.length > 0)
                       && !isSuccess
                       && !isAlreadyRegistred"
            class="message-warning">
