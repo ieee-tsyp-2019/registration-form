@@ -90,9 +90,31 @@ export class UserProfileComponent {
 
         this.diarLemdinaDoc = afs.doc<Accommodation>('accommodations/Diar Lemdina');
         this.diarLemdina = this.diarLemdinaDoc.valueChanges();
+        this.diarLemdina.subscribe(value => {
+          if (value.count < this.diarLemdinaLimit) {
+            if (!this.accommodations.find(x => x === 'Diar Lemdina')) {
+              this.accommodations.push('Diar Lemdina');
+            }
+          } else {
+            if (this.accommodations.find(x => x === 'Diar Lemdina')) {
+              this.accommodations = this.accommodations.filter(item => item !== 'Diar Lemdina');
+            }
+          }
+        });
 
         this.edenDoc = afs.doc<Accommodation>('accommodations/Eden');
         this.eden = this.edenDoc.valueChanges();
+        this.eden.subscribe(value => {
+          if (value.count < this.edenLimit) {
+            if (!this.accommodations.find(x => x === 'Eden')) {
+              this.accommodations.push('Eden');
+            }
+          } else {
+            if (this.accommodations.find(x => x === 'Eden')) {
+              this.accommodations = this.accommodations.filter(item => item !== 'Eden');
+            }
+          }
+        });
       }
     });
   }
