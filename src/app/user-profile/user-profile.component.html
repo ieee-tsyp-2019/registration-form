@@ -335,10 +335,10 @@
                     name="accommodation"
                     ngModel
                     required>
-              <option *ngIf="(diarLemdina | async)?.count < diarLemdinaLimit">
-                Diar Lemdina
+              <option *ngFor="let accommodation of accommodations"
+                      [ngValue]="accommodation">
+                {{ accommodation }}
               </option>
-              <option *ngIf="(eden | async)?.count < edenLimit">Eden</option>
             </select>
           </div>
           <p style="font-size: 12px; color: red">PS: Hotel will be assigned according to the availability of the rooms at the registration time.</p>
