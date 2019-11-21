@@ -150,14 +150,20 @@ export class UserProfileComponent {
     } else {
       this.isLoading = true;
 
-      const callable = this.fns.httpsCallable('sendMail');
-      callable({}).toPromise().then(() => {
-        this.userProfileDoc.set(Object.assign({}, this.userProfileInput)).then(() => {
+      const callable = this.fns.httpsCallable('setAccommodation');
+      callable({accommodation: this.userProfileInput.accommodation}).toPromise().then(() => {
+        const callableMail = this.fns.httpsCallable('sendMail');
+        callableMail({}).toPromise().then(() => {
+          this.userProfileDoc.set(Object.assign({}, this.userProfileInput)).then(() => {
+            this.isLoading = false;
+            this.isSuccess = true;
+            setTimeout(() => {
+              window.location.href = 'https://www.facebook.com/ieee.tsyp';
+            }, 5000);
+          });
+        }).catch(() => {
           this.isLoading = false;
-          this.isSuccess = true;
-          setTimeout(() => {
-            window.location.href = 'https://www.facebook.com/ieee.tsyp';
-          }, 5000);
+          this.isError = true;
         });
       }).catch(() => {
         this.isLoading = false;
