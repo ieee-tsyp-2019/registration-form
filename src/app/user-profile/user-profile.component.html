@@ -33,16 +33,14 @@
       <app-login></app-login>
 
       <h3 *ngIf="!isAlreadyRegistred
-                    && ((diarLemdina | async)?.count < diarLemdinaLimit
-                    || (eden | async)?.count < edenLimit)" class="h6">
+                    && (accommodations.length > 0)" class="h6">
         Please confirm all the provided information are correct and accurate
         before submitting the registration form.
       </h3>
 
       <form action="" id="contactForm" method="post" name="contactForm"
             *ngIf="!isAlreadyRegistred
-                      && ((diarLemdina | async)?.count < diarLemdinaLimit
-                      || (eden | async)?.count < edenLimit)"
+                      && (accommodations.length > 0)"
             #registrationForm="ngForm"
             (ngSubmit)="update()"
             class="form-group"
