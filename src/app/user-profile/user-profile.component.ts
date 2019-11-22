@@ -31,8 +31,8 @@ export class UserProfileComponent {
   private isLoading = false;
   private isError = false;
   private paymentReceiptFile = undefined;
-  private diarLemdinaLimit = 1;
-  private edenLimit = 1;
+  private diarLemdinaLimit = 680;
+  private edenLimit = 200;
   @ViewChild('registrationForm', {static: false}) registrationForm;
   private preferredCountries: CountryISO[] = [CountryISO.Tunisia];
   private accommodations: string[] = [];

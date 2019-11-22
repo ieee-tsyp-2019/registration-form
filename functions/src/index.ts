@@ -125,31 +125,31 @@ export const setAccommodation = functions.https.onCall(async (data: any, context
   });
 });
 
-// const gmailEmail = functions.config().gmail.email;
-// const gmailPassword = functions.config().gmail.password;
-// const mailTransport = nodemailer.createTransport({
-//   service: 'gmail',
-//   auth: {
-//     user: gmailEmail,
-//     pass: gmailPassword,
-//   },
-// });
-    const smtpEmail = functions.config().smtp.email;
-    const smtpPassword = functions.config().smtp.password;
-var smtpTransport = nodemailer.createTransport({
-  host: 'mail.ieee.tn',
-  port: 26,
-  secure: false,
+const gmailEmail = functions.config().gmail.email;
+const gmailPassword = functions.config().gmail.password;
+const mailTransport = nodemailer.createTransport({
+  service: 'gmail',
   auth: {
-    user: smtpEmail,
-    pass: smtpPassword,
-  }
+    user: gmailEmail,
+    pass: gmailPassword,
+  },
 });
+//     const smtpEmail = functions.config().smtp.email;
+//     const smtpPassword = functions.config().smtp.password;
+// var smtpTransport = nodemailer.createTransport({
+//   host: 'mail.ieee.tn',
+//   port: 26,
+//   secure: false,
+//   auth: {
+//     user: smtpEmail,
+//     pass: smtpPassword,
+//   }
+// });
 
 exports.sendMail = functions.https.onCall(async (data: any, context: any) => {
   const mailOptions = {
     to: context.auth.token.email,
-    subject: 'TSYP egistration confirmation',
+    subject: 'TSYP registration confirmation',
     html: `<html>
 <head>
 \t<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -160,7 +160,7 @@ exports.sendMail = functions.https.onCall(async (data: any, context: any) => {
 \t<p>Dear ${context.auth.token.name},</p>
 \t<p>&nbsp;</p>
 \t<p>CONGRATULATIONS!</p>
-\t<p>you have been successfully registered to the IEEE TSYP 2019 CONGRESS! 
+\t<p>You have been successfully registered for the IEEE TSYP 2019 CONGRESS! 
 \t</p>
 \t<p>&nbsp;</p>
 \t<p>With love,</p>
@@ -189,7 +189,7 @@ exports.sendMail = functions.https.onCall(async (data: any, context: any) => {
  </html>`
   };
 
-  return smtpTransport.sendMail(mailOptions, (error: any) => {
+  return mailTransport.sendMail(mailOptions, (error: any) => {
     if (error) {
       console.error(error.toString());
       return error.toString();

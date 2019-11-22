@@ -24,6 +24,8 @@
         <mark>December 15<sup>th</sup> - 17<sup>th</sup> 2019</mark>
       </h3>
       <h1 class="display-2 display-2--light">Registration form</h1>
+      <p>Registration (including payment) deadline is the <strong><u>30th of November 2019</u></strong>. The number of seats is limited. The registration may be deactivated before the deadline.
+      </p>
     </div>
   </div>
 
@@ -34,7 +36,7 @@
 
       <h3 *ngIf="!isAlreadyRegistred
                     && (accommodations.length > 0)" class="h6">
-        Please confirm all the provided information are correct and accurate
+        Please confirm that all the provided information are correct and accurate
         before submitting the registration form.
       </h3>
 
@@ -343,9 +345,9 @@
           </div>
           <p style="font-size: 12px; color: red">PS: Hotel will be assigned according to the availability of the rooms at the registration time.</p>
           <div class="form-field">
-            <input type="checkbox"  name="Event Terms and Conditions" required> I have read and are in agreement with IEEE's <a href="https://www.ieee.org/conferences/event-terms-and-conditions.html">Event Terms and Conditions</a><br>
-            <input type="checkbox"   name="Privacy Policy" required> I have read and are in agreement with IEEE’s <a href="https://www.ieee.org/security-privacy.html">Privacy Policy</a><br>
-            <input type="checkbox"   name="Code of Ethics" required > I have read and are in agreement with IEEE’s <a href="https://www.ieee.org/about/corporate/governance/p7-8.html">Code of Ethics</a><br>
+            <input type="checkbox"  name="Event Terms and Conditions" required ngModel> I have read and agreed with IEEE's <a href="https://www.ieee.org/conferences/event-terms-and-conditions.html">Event Terms and Conditions</a><br>
+            <input type="checkbox"   name="Privacy Policy" required ngModel> I have read and agreed with IEEE’s <a href="https://www.ieee.org/security-privacy.html">Privacy Policy</a><br>
+            <input type="checkbox"   name="Code of Ethics" required ngModel> I have read and agreed with IEEE’s <a href="https://www.ieee.org/about/corporate/governance/p7-8.html">Code of Ethics</a><br>
           </div>
           <div class="form-field">
             <button type="submit"
@@ -391,9 +393,25 @@
     </div> <!-- end contact-primary -->
 
     <div class="contact-secondary">
-      <div class="contact-info">
 
-        <h3 class="h6 hide-on-fullwidth">Contact Info</h3>
+      <div class="contact-info">
+        <h5 class="h6 hide-on-fullwidth" style="color: white">PAYMENT STEPS</h5>
+        <p style="font-size:12px">1 – If you don’t have DigiCard, Create your DigiCard (e-Dinar Smart) via: <a href="https://digicard.poste.tn">link</a>
+  <br>2 – Install D17: <a href="http://d17.tn/">link</a>
+ <br> 3 – Click on “Paiement Commerçant”
+ <br> 4 – If you are:
+          <ul style="font-size:12px">
+        <li>  <strong style="color: darkgray">An undergraduate student</strong>, scan the QR code for payment of <strong style="color: darkgray">125 TND</strong>
+          <p></p> <img src="./../../assets/images/ugrad.jpg" style="height: 80px; weight: 80px; padding-left: 70px">
+        <li><strong style="color: darkgray">A graduate student or Young Professional</strong>, scan the QR code of <strong style="color: darkgray">180 TND</strong>
+          <p></p><img src="./../../assets/images/grad.jpg" style="height: 80px; weight: 80px; padding-left: 70px">
+        <li>  <strong style="color: darkgray">A professional or senior member</strong>, scan the QR code of <strong style="color: darkgray">300 TND</strong>
+        <p></p><img src="./../../assets/images/pro.jpg" style="height: 80px; weight: 80px; padding-left: 70px">
+      </ul>
+        <p style="font-size:12px">5 – Copy the payement reference into the registration form.</p>
+
+
+        <h5 class="h6 hide-on-fullwidth" style="color: white">Contact Info</h5>
 
         <div class="cinfo">
           <h5>Venue</h5>
@@ -405,22 +423,16 @@
         </div>
 
         <div class="cinfo">
-          <h5>Email us at</h5>
+          <h5>Contact us at</h5>
           <p>
-            <a href="mailto:tsyp@ieee.org">tsyp@ieee.org</a>
-          </p>
-        </div>
-
-        <div class="cinfo">
-          <h5>Call us at</h5>
-          <p>
+            <a href="mailto:tsyp@ieee.org">tsyp@ieee.org</a><br>
             <a href="tel:+21654557486">(+216) 54 557 486</a><br>
             <a href="tel:+21629024205">(+216) 29 024 205</a><br>
             <a href="tel:+21623209400">(+216) 23 209 400</a>
           </p>
         </div>
 
-        <ul class="contact-social">
+        <ul class="contact-social" style="padding-left: 50px">
           <li>
             <a href="https://tsyp.ieee.tn" target="_blank">
               <i aria-hidden="true" class="fa fa-globe"></i>
