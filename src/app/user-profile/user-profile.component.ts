@@ -33,6 +33,7 @@ export class UserProfileComponent {
   private paymentReceiptFile = undefined;
   private diarLemdinaLimit = 680;
   private edenLimit = 200;
+  private isInit = true;
   @ViewChild('registrationForm', {static: false}) registrationForm;
   private preferredCountries: CountryISO[] = [CountryISO.Tunisia];
   private accommodations: string[] = [];
@@ -100,6 +101,7 @@ export class UserProfileComponent {
               this.accommodations = this.accommodations.filter(item => item !== 'Diar Lemdina');
             }
           }
+          this.isInit = false;
         });
 
         this.edenDoc = afs.doc<Accommodation>('accommodations/Eden');
@@ -114,6 +116,7 @@ export class UserProfileComponent {
               this.accommodations = this.accommodations.filter(item => item !== 'Eden');
             }
           }
+          this.isInit = false;
         });
       }
     });
