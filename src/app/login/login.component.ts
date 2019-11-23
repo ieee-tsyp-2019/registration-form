@@ -10,16 +10,26 @@ import {auth} from 'firebase';
 export class LoginComponent implements OnInit {
 
   constructor(public afAuth: AngularFireAuth) {
+    this.afAuth.auth.onAuthStateChanged(user => {
+      if (!user) {
+        this.login();
+      }
+    });
   }
 
   ngOnInit() {
   }
 
   login() {
-    this.afAuth.auth.signInWithPopup(new auth.FacebookAuthProvider());
+    const provider = new auth.GoogleAuthProvider();
+    provider.setCustomParameters({
+      hd: 'ieee.org'
+    });
+    this.afAuth.auth.signInWithRedirect(provider);
   }
 
   logout() {
+    // TODO: Unsubscribe from all subscriptions
     this.afAuth.auth.signOut();
   }
 
