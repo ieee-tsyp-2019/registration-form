@@ -360,9 +360,31 @@
             rooms at the registration time.
           </p>
           <div class="form-field">
-            <input type="checkbox"  name="Event Terms and Conditions" required ngModel> I have read and agreed with IEEE's <a href="https://www.ieee.org/conferences/event-terms-and-conditions.html">Event Terms and Conditions</a><br>
-            <input type="checkbox"   name="Privacy Policy" required ngModel> I have read and agreed with IEEE’s <a href="https://www.ieee.org/security-privacy.html">Privacy Policy</a><br>
-            <input type="checkbox"   name="Code of Ethics" required ngModel> I have read and agreed with IEEE’s <a href="https://www.ieee.org/about/corporate/governance/p7-8.html">Code of Ethics</a><br>
+            <input name="Event Terms and Conditions"
+                   ngModel
+                   required
+                   type="checkbox">
+            I have read and agreed with IEEE's
+            <a
+              href="https://www.ieee.org/conferences/event-terms-and-conditions.html">
+              Event Terms and Conditions
+            </a><br>
+            <input name="Privacy Policy"
+                   ngModel
+                   required
+                   type="checkbox">
+            I have read and agreed with IEEE’s
+            <a href="https://www.ieee.org/security-privacy.html">
+              Privacy Policy
+            </a><br>
+            <input name="Code of Ethics"
+                   ngModel
+                   required
+                   type="checkbox">
+            I have read and agreed with IEEE’s
+            <a href="https://www.ieee.org/about/corporate/governance/p7-8.html">
+              Code of Ethics
+            </a><br>
           </div>
           <div class="form-field">
             <button type="submit"
