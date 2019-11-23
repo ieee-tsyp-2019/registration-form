@@ -137,27 +137,25 @@
           <div *ngIf="userProfileInput.type == 'IEEE Professional Member'
                         || userProfileInput.type == 'IEEE Senior Member'
                         || userProfileInput.type == 'IEEE Graduate Student (master / PhD students)'" class="form-field">
-            <label *ngIf="YP.valid || YP.untouched"
-                   for="YP">
+            <label *ngIf="yp.valid || yp.untouched"
+                   for="yp">
               YP membership ? *
-
             </label>
-            <label *ngIf="YP.invalid && YP.touched"
+            <label *ngIf="yp.invalid && yp.touched"
                    class="label-warning"
-                   for="YP">
+                   for="yp">
               Answer is required!
             </label>
             <select [(ngModel)]="userProfileInput.yp"
-                    #YP="ngModel"
+                    #yp="ngModel"
                     class="full-width form-control"
-                    id="YP"
+                    id="yp"
                     ngModel
                     required
-                    name="YP">
+                    name="yp">
               <option>Yes</option>
               <option>No</option>
             </select>
-
           </div>
 
           <div *ngIf="userProfileInput.type == 'IEEE Professional Member'
