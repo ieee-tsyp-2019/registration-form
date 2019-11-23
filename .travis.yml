@@ -10,7 +10,7 @@ script:
 
 before_deploy:
   - npm install -g tslint
-  - cd functions && npm install
+  - npm --prefix functions install
 
 env:
   - FIREBASE_ONLY=hosting:tsyp2019-registration-form-development
