@@ -12,7 +12,7 @@ export class UserProfile {
     public organization: string,
     public position: string,
     public educationalInstitution: string,
-    public YP: string,
+    public yp: string,
     public gender: string,
     public paymentCode: string
   ) {
