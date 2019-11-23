@@ -26,17 +26,17 @@ export class UserProfileComponent {
   private diarLemdina;
   private edenDoc;
   private eden;
-  private isAlreadyRegistred = false;
-  private isSuccess = false;
-  private isLoading = false;
-  private isError = false;
+  public isAlreadyRegistred = false;
+  public isSuccess = false;
+  public isLoading = false;
+  public isError = false;
   private paymentReceiptFile = undefined;
   private diarLemdinaLimit = 680;
   private edenLimit = 200;
-  private isInit = true;
+  public isInit = true;
   @ViewChild('registrationForm', {static: false}) registrationForm;
-  private preferredCountries: CountryISO[] = [CountryISO.Tunisia];
-  private accommodations: string[] = [];
+  public preferredCountries: CountryISO[] = [CountryISO.Tunisia];
+  public accommodations: string[] = [];
 
   constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private storage: AngularFireStorage,
               private fns: AngularFireFunctions, private el: ElementRef) {
