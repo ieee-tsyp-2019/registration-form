@@ -13,18 +13,3 @@ install:
 
 script:
   - npm run build
-
-before_deploy:
-  - npm install -g tslint
-  - npm --prefix functions install
-
-env:
-  - FIREBASE_ONLY=hosting:tsyp2019-registration-form-development
-deploy:
-  - provider: firebase
-    skip_cleanup: true
-    token:
-      secure: J/E1LY9xHLATwBFZaXPdSCiGOpft3whzSO7JpB94BfldfEus2Sl2UXH8o+mnrubGnPDSWWZ6K8DiIDcSXsQ9IybJK09iJTMomkpxwk6VxvE0gZfLXhJWcBEDb7i9TbuRqaGByuGlJLapvdIPEby4BrpufwKT9uqEEjEF9+sTb/VLYq7G0VR3S0l2PexzTFe0avDrL5LIds2KYxP0FtaZLv1yA7+QyLs9DBTOd3lQUXE3BOt7K5N/qx5QJE/r4IMFzTm9mJS6avuqKr1r+51/5RyKHvUvpAfiXhVgf3bc6FkHe4V58R0wYQBYi++CkCZ53VbUO0EzGfftiVNv3WNcNxW5uAwFRu78+nSXIgxsB/7quAzTOZgDGT8N8fYHAWr74S5zuhqVO7OO3fAcXY3Im4G0jyPwp5d1p/io8yTU9djte7F2CGKWdQSypbxUErHHWm4IhSlJEHlE4/0ht6wKL55Q6WWidRPlGhP0zCh5yOc4R/69hNvX5n5kam0ftL41dHxI5EsBpyFgnf8ZnaSr1vuUf/RPQsSYuMTLKLm4+VIyafx/jO7DG4vQ1lKX+Xv5YBsF6DvGwNVDFTIqSHBkkpyydDOoCd/loagyp/JtR8I/s6iHd+tJvwr4TM2RSDytUjX0edxdwyiZSgiPHp+RqR2VlM9idqsU+llluTWXez4=
-    project: tsyp2019-app-development
-    on:
-      branch: develop
