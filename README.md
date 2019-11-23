@@ -1,4 +1,4 @@
-# TSYP 2019 Registration Form
+# TSYP 2019 Registration Form [![Build Status](https://travis-ci.com/tildehacker/tsyp2019-registration-form.svg?token=TYqdpiSGpP2eqYwQydmq&branch=develop)](https://travis-ci.com/tildehacker/tsyp2019-registration-form)
 
 Registration form for TSYP 2019.
 
