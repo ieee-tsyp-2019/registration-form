@@ -2,19 +2,33 @@
 ================================================== -->
 <section class="s-contact" id="contact">
 
-  <div class="overlay"></div>
+  <div class="overlay">
+    <div>
+      <img src="assets/images/ieee_tunisia_logo.png"
+           style="height: 40px; weight: 80px;  float: left;left:0; margin-top: 10px; margin-left: 10px;">
+      <img src="assets/images/Logo-SBb.png"
+           style="height: 50px; weight: 80px;  float: right; right: 0; margin-top: 10px;margin-right: 10px">
+      <img src="assets/images/Region8.png"
+           style="height: 50px; weight: 80px;  float: left;left:0; margin-top: 10px; margin-left: 10px">
+      <img src="assets/images/YPLogo.png"
+           style="height: 40px; weight: 80px;  float: right; right: 0; margin-top: 10px; margin-right: 10px">
+    </div>
+  </div>
   <div class="contact__line"></div>
 
   <div class="row section-header">
     <div class="col-full">
-      <h3 class="subhead">
-        7<sup>th</sup>
-        IEEE Tunisian Students and Young Professionals Congress (TSYP)
-      </h3>
+      <img src="assets/images/logo final blanc_Plan de travail.png"
+           style="height: 200px; weight: 100px; margin-bottom: 20px">
       <h3 class="subhead">
         <mark>December 15<sup>th</sup> - 17<sup>th</sup> 2019</mark>
       </h3>
-      <h1 class="display-2 display-2--light">Pre-registration form</h1>
+      <h1 class="display-2 display-2--light">Registration form</h1>
+      <p>
+        Registration (including payment) deadline is the
+        <strong><u>30th of November 2019</u></strong>. The number of seats is
+        limited. The registration may be deactivated before the deadline.
+      </p>
     </div>
   </div>
 
@@ -24,16 +38,15 @@
       <app-login></app-login>
 
       <h3 *ngIf="!isAlreadyRegistred
-                    && ((diarLemdina | async)?.count < diarLemdinaLimit
-                    || (eden | async)?.count < edenLimit)" class="h6">
-        Please confirm all the provided information are correct and accurate
+                    && (accommodations.length > 0)" class="h6">
+        Please confirm that all the provided information are correct and
+        accurate
         before submitting the registration form.
       </h3>
 
       <form action="" id="contactForm" method="post" name="contactForm"
             *ngIf="!isAlreadyRegistred
-                      && ((diarLemdina | async)?.count < diarLemdinaLimit
-                      || (eden | async)?.count < edenLimit)"
+                      && (accommodations.length > 0)"
             #registrationForm="ngForm"
             (ngSubmit)="update()"
             class="form-group"
@@ -61,8 +74,9 @@
           </div>
 
           <div class="form-field">
-            <label *ngIf="type.valid || type.untouched" for="type">Student or
-              YP? *</label>
+            <label *ngIf="type.valid || type.untouched" for="type">
+              IEEE Grade *
+            </label>
             <label *ngIf="type.invalid && type.touched"
                    class="label-warning"
                    for="type">This field is required!</label>
@@ -73,16 +87,17 @@
                     class="full-width form-control"
                     ngModel
                     required="">
-              <option>Student</option>
-              <option>Young professional</option>
-              <option>Member</option>
-              <option>Senior member</option>
+              <option>IEEE Undergraduate Student</option>
+              <option>IEEE Graduate Student (master / PhD students)</option>
+              <!--Young professional-->
+              <option>IEEE Professional Member</option> <!--Member-->
+              <option>IEEE Senior Member</option> <!--Senior member-->
             </select>
           </div>
 
-          <div *ngIf="userProfileInput.type == 'Member'
-                        || userProfileInput.type == 'Senior member'
-                        || userProfileInput.type == 'Young professional'"
+          <div *ngIf="userProfileInput.type == 'IEEE Professional Member'
+                        || userProfileInput.type == 'IEEE Senior Member'
+                        || userProfileInput.type == 'IEEE Graduate Student (master / PhD students)'"
                class="form-field">
             <label for="organization">
               Organization *
@@ -102,9 +117,9 @@
                    type="text">
           </div>
 
-          <div *ngIf="userProfileInput.type == 'Member'
-                        || userProfileInput.type == 'Senior member'
-                        || userProfileInput.type == 'Young professional'"
+          <div *ngIf="userProfileInput.type == 'IEEE Professional Member'
+                        || userProfileInput.type == 'IEEE Senior Member'
+                        || userProfileInput.type == 'IEEE Graduate Student (master / PhD students)'"
                class="form-field">
             <label for="position">
               Position *
@@ -123,8 +138,42 @@
                    required
                    type="text">
           </div>
+          <div *ngIf="userProfileInput.type == 'IEEE Professional Member'
+                        || userProfileInput.type == 'IEEE Senior Member'
+                        || userProfileInput.type == 'IEEE Graduate Student (master / PhD students)'"
+               class="form-field">
+            <label *ngIf="yp.valid || yp.untouched"
+                   for="yp">
+              YP membership ? *
+            </label>
+            <label *ngIf="yp.invalid && yp.touched"
+                   class="label-warning"
+                   for="yp">
+              Answer is required!
+            </label>
+            <select #yp="ngModel"
+                    [(ngModel)]="userProfileInput.yp"
+                    class="full-width form-control"
+                    id="yp"
+                    name="yp"
+                    ngModel
+                    required>
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </div>
 
-          <div *ngIf="userProfileInput.type == 'Student'" class="form-field">
+          <div *ngIf="userProfileInput.type == 'IEEE Professional Member'
+                        || userProfileInput.type == 'IEEE Senior Member'
+                        || userProfileInput.type == 'IEEE Graduate Student (master / PhD students)'">
+            <p style="font-size: 12px">
+              (you had received your first professional degree within the last
+              15 years)
+            </p>
+          </div>
+
+          <div *ngIf="userProfileInput.type == 'IEEE Undergraduate Student'"
+               class="form-field">
             <label *ngIf="studentBranch.valid || studentBranch.untouched"
                    for="student-branch">
               Student branch *
@@ -177,7 +226,7 @@
 
           <div
             *ngIf="userProfileInput.studentBranch == 'Other educational institution'
-                      && userProfileInput.type == 'Student'"
+                      && userProfileInput.type == 'IEEE Undergraduate Student'"
             class="form-field">
             <label for="educationalInstitution">
               Educational institution *
@@ -238,6 +287,26 @@
           </div>
 
           <div class="form-field">
+            <label *ngIf="gender.valid || gender.untouched"
+                   for="gender">
+              Gender *
+            </label>
+            <label *ngIf="gender.invalid && gender.touched"
+                   class="label-warning"
+                   for="gender">Gender is required !</label>
+            <select #gender="ngModel"
+                    [(ngModel)]="userProfileInput.gender"
+                    class="full-width form-control"
+                    id="gender"
+                    name="gender"
+                    ngModel
+                    required>
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
+
+          <div class="form-field">
             <label for="birth-date">Birth date</label>
             <input [(ngModel)]="userProfileInput.dateOfBirth"
                    class="full-width unstyled-date"
@@ -245,7 +314,82 @@
                    name="birth-date"
                    type="date">
           </div>
+          <div class="form-field">
+            <label *ngIf="paymentCode.valid || paymentCode.untouched"
+                   for="paymentCode">
+              Payment Code *
+            </label>
+            <label *ngIf="paymentCode.invalid && paymentCode.touched"
+                   class="label-warning"
+                   for="paymentCode">Payment Code is invalid!</label>
+            <input #paymentCode="ngModel"
+                   [(ngModel)]="userProfileInput.paymentCode"
+                   class="full-width form-control"
+                   id="paymentCode"
+                   name="paymentCode"
+                   ngModel
+                   required
+                   type="text">
+          </div>
+          <div class="form-field">
+            <label *ngIf="accommodation.valid || accommodation.untouched"
+                   for="accommodation">
+              Accommodation *
+            </label>
+            <label *ngIf="accommodation.invalid && accommodation.touched"
+                   class="label-warning"
+                   for="accommodation">
+              Accommodation is required!
+            </label>
+            <select #accommodation="ngModel"
+                    [(ngModel)]="userProfileInput.accommodation"
+                    class="full-width form-control"
+                    id="accommodation"
+                    name="accommodation"
+                    ngModel
+                    required>
+              <option *ngFor="let accommodation of accommodations"
+                      [ngValue]="accommodation">
+                {{ accommodation }}
+              </option>
+            </select>
+          </div>
 
+          <ul>
+            <li>Diar Lemdina Hotel (6 persons / apartment)</li>
+            <li>Eden Hotel (4 persons / room)</li>
+          </ul>
+          <p style="font-size: 12px; color: red">
+            PS: Hotel will be assigned according to the availability of the
+            rooms at the registration time.
+          </p>
+          <div class="form-field">
+            <input name="Event Terms and Conditions"
+                   ngModel
+                   required
+                   type="checkbox">
+            I have read and agreed with IEEE's
+            <a
+              href="https://www.ieee.org/conferences/event-terms-and-conditions.html">
+              Event Terms and Conditions
+            </a><br>
+            <input name="Privacy Policy"
+                   ngModel
+                   required
+                   type="checkbox">
+            I have read and agreed with IEEE’s
+            <a href="https://www.ieee.org/security-privacy.html">
+              Privacy Policy
+            </a><br>
+            <input name="Code of Ethics"
+                   ngModel
+                   required
+                   type="checkbox">
+            I have read and agreed with IEEE’s
+            <a href="https://www.ieee.org/about/corporate/governance/p7-8.html">
+              Code of Ethics
+            </a><br>
+          </div>
           <div class="form-field">
             <button type="submit"
                     class="full-width btn--primary">Submit
@@ -275,8 +419,7 @@
         Facebook page in in 5 seconds...
       </div>
 
-      <div *ngIf="!((diarLemdina | async)?.count < diarLemdinaLimit
-                      || (eden | async)?.count < edenLimit)
+      <div *ngIf="!(accommodations.length > 0) && !isInit
                       && !isSuccess
                       && !isAlreadyRegistred"
            class="message-warning">
@@ -292,8 +435,45 @@
 
     <div class="contact-secondary">
       <div class="contact-info">
+        <h5 class="h6 hide-on-fullwidth"
+            style="color: white">Payment Steps</h5>
+        <div style="font-size:12px">
+          1 – If you don’t have DigiCard, Create your DigiCard (e-Dinar Smart)
+          via: <a href="https://digicard.poste.tn">link</a><br>
+          2 – Install D17: <a href="http://d17.tn/">link</a><br>
+          3 – Click on "Paiement Commerçant"<br>
+          4 – If you are:
+          <ul style="font-size:12px">
+            <li>
+              <strong style="color: darkgray">An undergraduate student</strong>,
+              scan the QR code for payment of
+              <strong style="color: darkgray">125 TND</strong><br><br>
+              <img src="assets/images/ugrad.jpg"
+                   style="height: 80px; weight: 80px; padding-left: 70px">
+            </li>
+            <li>
+              <strong style="color: darkgray">A graduate student or Young
+                Professional</strong>,
+              scan the QR code of
+              <strong style="color: darkgray">180 TND</strong><br><br>
+              <img src="assets/images/grad.jpg"
+                   style="height: 80px; weight: 80px; padding-left: 70px">
+            </li>
+            <li>
+              <strong style="color: darkgray">A professional or senior
+                member</strong>,
+              scan the QR code of
+              <strong style="color: darkgray">300 TND</strong><br><br>
+              <img src="assets/images/pro.jpg"
+                   style="height: 80px; weight: 80px; padding-left: 70px">
+            </li>
+          </ul>
+          <p style="font-size:12px">
+            5 – Copy the payment reference into the registration form.
+          </p>
+        </div>
 
-        <h3 class="h6 hide-on-fullwidth">Contact Info</h3>
+        <h5 class="h6 hide-on-fullwidth" style="color: white">Contact Info</h5>
 
         <div class="cinfo">
           <h5>Venue</h5>
@@ -305,22 +485,16 @@
         </div>
 
         <div class="cinfo">
-          <h5>Email us at</h5>
+          <h5>Contact us at</h5>
           <p>
-            <a href="mailto:tsyp@ieee.org">tsyp@ieee.org</a>
-          </p>
-        </div>
-
-        <div class="cinfo">
-          <h5>Call us at</h5>
-          <p>
+            <a href="mailto:tsyp@ieee.org">tsyp@ieee.org</a><br>
             <a href="tel:+21654557486">(+216) 54 557 486</a><br>
             <a href="tel:+21629024205">(+216) 29 024 205</a><br>
             <a href="tel:+21623209400">(+216) 23 209 400</a>
           </p>
         </div>
 
-        <ul class="contact-social">
+        <ul class="contact-social" style="padding-left: 50px">
           <li>
             <a href="https://tsyp.ieee.tn" target="_blank">
               <i aria-hidden="true" class="fa fa-globe"></i>

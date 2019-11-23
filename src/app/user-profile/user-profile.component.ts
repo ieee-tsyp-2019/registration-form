@@ -31,10 +31,12 @@ export class UserProfileComponent {
   private isLoading = false;
   private isError = false;
   private paymentReceiptFile = undefined;
-  private diarLemdinaLimit = 1;
-  private edenLimit = 1;
+  private diarLemdinaLimit = 680;
+  private edenLimit = 200;
+  private isInit = true;
   @ViewChild('registrationForm', {static: false}) registrationForm;
   private preferredCountries: CountryISO[] = [CountryISO.Tunisia];
+  private accommodations: string[] = [];
 
   constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private storage: AngularFireStorage,
               private fns: AngularFireFunctions, private el: ElementRef) {
@@ -48,7 +50,12 @@ export class UserProfileComponent {
       '',
       '',
       '',
-      '');
+      '',
+      '',
+      '',
+      '',
+      ''
+    );
     this.afAuth.auth.onAuthStateChanged(user => {
       if (user) {
         this.userProfileDoc = afs.doc<UserProfile>('users/' + user.uid);
@@ -61,12 +68,17 @@ export class UserProfileComponent {
               user.email ? user.email : '',
               '',
               user.displayName ? user.displayName : '',
-              '',
-              '',
               user.phoneNumber ? user.phoneNumber : '',
               '',
               '',
-              '');
+              '',
+              '',
+              '',
+              '',
+              '',
+              '',
+              ''
+            );
           } else {
             this.isAlreadyRegistred = true;
           }
@@ -79,9 +91,33 @@ export class UserProfileComponent {
 
         this.diarLemdinaDoc = afs.doc<Accommodation>('accommodations/Diar Lemdina');
         this.diarLemdina = this.diarLemdinaDoc.valueChanges();
+        this.diarLemdina.subscribe(value => {
+          if (value.count < this.diarLemdinaLimit) {
+            if (!this.accommodations.find(x => x === 'Diar Lemdina')) {
+              this.accommodations.push('Diar Lemdina');
+            }
+          } else {
+            if (this.accommodations.find(x => x === 'Diar Lemdina')) {
+              this.accommodations = this.accommodations.filter(item => item !== 'Diar Lemdina');
+            }
+          }
+          this.isInit = false;
+        });
 
         this.edenDoc = afs.doc<Accommodation>('accommodations/Eden');
         this.eden = this.edenDoc.valueChanges();
+        this.eden.subscribe(value => {
+          if (value.count < this.edenLimit) {
+            if (!this.accommodations.find(x => x === 'Eden')) {
+              this.accommodations.push('Eden');
+            }
+          } else {
+            if (this.accommodations.find(x => x === 'Eden')) {
+              this.accommodations = this.accommodations.filter(item => item !== 'Eden');
+            }
+          }
+          this.isInit = false;
+        });
       }
     });
   }
@@ -117,14 +153,20 @@ export class UserProfileComponent {
     } else {
       this.isLoading = true;
 
-      const callable = this.fns.httpsCallable('sendMail');
-      callable({}).toPromise().then(() => {
-        this.userProfileDoc.set(Object.assign({}, this.userProfileInput)).then(() => {
+      const callable = this.fns.httpsCallable('setAccommodation');
+      callable({accommodation: this.userProfileInput.accommodation}).toPromise().then(() => {
+        const callableMail = this.fns.httpsCallable('sendMail');
+        callableMail({}).toPromise().then(() => {
+          this.userProfileDoc.set(Object.assign({}, this.userProfileInput)).then(() => {
+            this.isLoading = false;
+            this.isSuccess = true;
+            setTimeout(() => {
+              window.location.href = 'https://www.facebook.com/ieee.tsyp';
+            }, 5000);
+          });
+        }).catch(() => {
           this.isLoading = false;
-          this.isSuccess = true;
-          setTimeout(() => {
-            window.location.href = 'https://www.facebook.com/ieee.tsyp';
-          }, 5000);
+          this.isError = true;
         });
       }).catch(() => {
         this.isLoading = false;
