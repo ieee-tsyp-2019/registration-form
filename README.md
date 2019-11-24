@@ -4,6 +4,15 @@
 
 Registration form for TSYP 2019.
 
+## What is TSYP?
+> The TSYP congress is the IEEE Tunisia section’s Annual Meeting where more
+> than 1,000 engineering students from several Tunisian public and private
+> universities, as well as young professionals, gather together to learn
+> further details about the IEEE technical, professional, and education
+> benefits; and to discuss the future engineering challenges worldwide and
+> in Tunisia. (More information on [tsyp.ieee.tn](https://tsyp.ieee.tn
+> "tsyp.ieee.tn"))
+
 ## How to deploy
 When running `firebase deploy`, Firebase CLI will try to deploy all hosting
 targets (assumes they exist in every project specified in `.firebaserc`). Target
