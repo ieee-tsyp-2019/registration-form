@@ -1,3 +1,5 @@
+![TSYP 2019](src/assets/images/tsyp-black-logo.png?raw=true "TSYP 2019")
+
 # TSYP 2019 Registration Form [![Build Status](https://travis-ci.com/tildehacker/tsyp2019-registration-form.svg?token=TYqdpiSGpP2eqYwQydmq&branch=develop)](https://travis-ci.com/tildehacker/tsyp2019-registration-form)
 
 Registration form for TSYP 2019.
