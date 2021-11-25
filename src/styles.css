@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+
+option {
+  color: #121212;
+}
+
+.unstyled-date {
+  -webkit-appearance: none;
+}
+
+.unstyled-date::-webkit-inner-spin-button,
+.unstyled-date::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
+
+.label-warning {
+  background: #b33a3a !important;
+}
+
+.label-warning::after {
+  border-right-color: #b33a3a !important;
+}
